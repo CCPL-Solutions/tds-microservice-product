@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>co.com.viveres.susy.microserviceproduct</groupId>
-	<artifactId>microservice-product</artifactId>
+	<artifactId>tds-microservice-product</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>microservice-product</name>
+	<name>tds-microservice-product</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
