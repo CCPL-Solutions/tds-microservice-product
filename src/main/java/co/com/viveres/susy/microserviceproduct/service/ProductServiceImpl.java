@@ -11,12 +11,15 @@ import org.springframework.stereotype.Service;
 import co.com.viveres.susy.microservicecommons.entity.MessageEntity;
 import co.com.viveres.susy.microservicecommons.exceptions.GenericException;
 import co.com.viveres.susy.microservicecommons.repository.IMessageRepository;
+import co.com.viveres.susy.microserviceproduct.dto.BrandDto;
 import co.com.viveres.susy.microserviceproduct.dto.ContentOutputDto;
 import co.com.viveres.susy.microserviceproduct.dto.ProductInputDto;
 import co.com.viveres.susy.microserviceproduct.dto.ProductOutputDto;
 import co.com.viveres.susy.microserviceproduct.dto.StockDto;
+import co.com.viveres.susy.microserviceproduct.entity.BrandEntity;
 import co.com.viveres.susy.microserviceproduct.entity.ContentEntity;
 import co.com.viveres.susy.microserviceproduct.entity.ProductEntity;
+import co.com.viveres.susy.microserviceproduct.repository.IBrandRepository;
 import co.com.viveres.susy.microserviceproduct.repository.IContentRepository;
 import co.com.viveres.susy.microserviceproduct.repository.IProductRepository;
 import co.com.viveres.susy.microserviceproduct.util.ResponseMessages;
@@ -30,6 +33,8 @@ public class ProductServiceImpl implements IProductService {
 	private IContentRepository contentRepository;
 	@Autowired
 	private IMessageRepository messageRepository;
+	@Autowired
+	private IBrandRepository brandRepository;
 
 	@Override
 	public ProductOutputDto create(ProductInputDto productDto) {
@@ -46,15 +51,18 @@ public class ProductServiceImpl implements IProductService {
 
 		ContentEntity contentEntity = this.contentRepository.findById(productDto.getContent().getId())
 				.orElseThrow(() -> new GenericException(new MessageEntity()));
+		
+		BrandEntity brandEntity = this.brandRepository.findById(productDto.getBrand().getId())
+				.orElseThrow(() -> new GenericException(new MessageEntity()));
 
 		Optional<ProductEntity> productEntity = this.productRepository.findByNameAndBrandAndContent(productDto.getName(),
-				productDto.getBrand(), contentEntity);
+				brandEntity, contentEntity);
 
 		if (productEntity.isPresent())
 			throw this.setGenericException(ResponseMessages.PRODUCT_ALREADY_EXISTS,
 					productDto.getName()
 					.concat(" ")
-					.concat(productDto.getBrand())
+					.concat(productDto.getBrand().getName())
 					.concat(" de ")
 					.concat(String.valueOf(contentEntity.getValue())
 							.concat(" ")
@@ -68,10 +76,13 @@ public class ProductServiceImpl implements IProductService {
 		ContentEntity contentEntity = this.contentRepository.findById(productDto.getContent().getId())
 				.orElseThrow(() -> this.setGenericException(ResponseMessages.CONTENT_DOES_NOT_EXIST,
 						String.valueOf(productDto.getContent().getId())));
+		
+		BrandEntity brandEntity = this.brandRepository.findById(productDto.getBrand().getId())
+				.orElseThrow(() -> new GenericException(new MessageEntity()));
 
 		productEntity.setContent(contentEntity);
 		productEntity.setName(productDto.getName());
-		productEntity.setBrand(productDto.getBrand());
+		productEntity.setBrand(brandEntity);
 		productEntity.setPrice(productDto.getPrice());
 		productEntity.setCurrentNumItems(productDto.getCurrentNumItems());
 		productEntity.setMinimunStock(productDto.getMinimunStock());
@@ -85,7 +96,9 @@ public class ProductServiceImpl implements IProductService {
 		ProductOutputDto productDto = new ProductOutputDto();
 		productDto.setId(productEntity.getId());
 		productDto.setName(productEntity.getName());
-		productDto.setBrand(productEntity.getBrand());
+		productDto.setBrand(new BrandDto());
+		productDto.getBrand().setId(productEntity.getBrand().getId());
+		productDto.getBrand().setName(productEntity.getBrand().getName());
 		productDto.setPrice(productEntity.getPrice());
 		productDto.setCurrentNumItems(productEntity.getCurrentNumItems());
 		productDto.setMinimunStock(productEntity.getMinimunStock());
@@ -147,8 +160,7 @@ public class ProductServiceImpl implements IProductService {
 
 	}
 	
-	private GenericException setGenericException(String responseMessage, String value) {
-		
+	private GenericException setGenericException(String responseMessage, String value) {		
 		MessageEntity message = this.messageRepository.findById(responseMessage)
 				.orElseThrow(NoSuchElementException::new);
 		message.setDescripction(String.format(message.getDescripction(), value));

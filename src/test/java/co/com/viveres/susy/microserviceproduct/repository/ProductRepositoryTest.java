@@ -16,7 +16,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import co.com.viveres.susy.microserviceproduct.entity.ProductEntity;
 
 @DataJpaTest
-public class ProductRepositoryTest {
+class ProductRepositoryTest {
 
 	@Autowired
 	private IProductRepository repository;

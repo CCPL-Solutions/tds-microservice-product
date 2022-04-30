@@ -5,16 +5,25 @@ import java.util.List;
 import java.util.Optional;
 
 import co.com.viveres.susy.microservicecommons.entity.MessageEntity;
+import co.com.viveres.susy.microserviceproduct.dto.BrandDto;
 import co.com.viveres.susy.microserviceproduct.dto.ContentInputDto;
 import co.com.viveres.susy.microserviceproduct.dto.ContentOutputDto;
 import co.com.viveres.susy.microserviceproduct.dto.ProductInputDto;
 import co.com.viveres.susy.microserviceproduct.dto.ProductOutputDto;
 import co.com.viveres.susy.microserviceproduct.dto.StockDto;
+import co.com.viveres.susy.microserviceproduct.entity.BrandEntity;
 import co.com.viveres.susy.microserviceproduct.entity.ContentEntity;
 import co.com.viveres.susy.microserviceproduct.entity.MeasureTypeEntity;
 import co.com.viveres.susy.microserviceproduct.entity.ProductEntity;
 
 public class DummyMock {
+	
+	public static Optional<BrandEntity> brandEntity() {		
+		BrandEntity brand = new BrandEntity();
+		brand.setId(1L);
+		brand.setName("Diana");
+		return Optional.of(brand);
+	}
 	
 	public static Optional<ContentEntity> contentEntity() {		
 		ContentEntity content = new ContentEntity();
@@ -36,7 +45,9 @@ public class DummyMock {
 		productEntity.setId(1L);
 		productEntity.setContent(contentEntity().orElseThrow());
 		productEntity.setName("Arroz");
-		productEntity.setBrand("Diana");
+		productEntity.setBrand(new BrandEntity());
+		productEntity.getBrand().setId(1L);
+		productEntity.getBrand().setName("Diana");
 		productEntity.setPrice(2500d);
 		productEntity.setCurrentNumItems(15);
 		productEntity.setMinimunStock(5);
@@ -47,7 +58,9 @@ public class DummyMock {
 	public static ProductEntity productEntityTwo(){
 		ProductEntity product = new ProductEntity();
 		product.setName("Gaseosa");
-		product.setBrand("Postobon");
+		product.setBrand(new BrandEntity());
+		product.getBrand().setId(1L);
+		product.getBrand().setName("Postobon");
 		product.setDescription("Gaseosa Postobon x 1 litro");
 		product.setPrice(3600d);
 		product.setCurrentNumItems(6);
@@ -72,27 +85,31 @@ public class DummyMock {
 	}
 	
 	public static ProductInputDto productInputDto(){
-		ProductInputDto productInputDto =new ProductInputDto();
-		productInputDto.setName("Arroz");
-		productInputDto.setBrand("Diana");
-		productInputDto.setPrice(2500d);
-		productInputDto.setCurrentNumItems(15);
-		productInputDto.setMinimunStock(5);
-		productInputDto.setDescription("Arroz Diana x 500 gramos");
-		productInputDto.setContent(contentInputDto());
-		return productInputDto;
+		ProductInputDto product =new ProductInputDto();
+		product.setName("Arroz");
+		product.setBrand(new BrandDto());
+		product.getBrand().setId(1L);
+		product.getBrand().setName("Diana");
+		product.setPrice(2500d);
+		product.setCurrentNumItems(15);
+		product.setMinimunStock(5);
+		product.setDescription("Arroz Diana x 500 gramos");
+		product.setContent(contentInputDto());
+		return product;
 	}
 	
 	public static ProductInputDto productInputDtoUpdate(){
-		ProductInputDto productInputDto =new ProductInputDto();
-		productInputDto.setName("Arroz");
-		productInputDto.setBrand("Diana");
-		productInputDto.setPrice(3200d);
-		productInputDto.setCurrentNumItems(20);
-		productInputDto.setMinimunStock(10);
-		productInputDto.setDescription("Arroz Diana x 500 gramos");
-		productInputDto.setContent(contentInputDto());
-		return productInputDto;
+		ProductInputDto product =new ProductInputDto();
+		product.setName("Arroz");
+		product.setBrand(new BrandDto());
+		product.getBrand().setId(1L);
+		product.getBrand().setName("Diana");
+		product.setPrice(3200d);
+		product.setCurrentNumItems(20);
+		product.setMinimunStock(10);
+		product.setDescription("Arroz Diana x 500 gramos");
+		product.setContent(contentInputDto());
+		return product;
 	}
 	
 	public static ContentOutputDto contentOutputDto() {
@@ -107,7 +124,9 @@ public class DummyMock {
 		ProductOutputDto product =new ProductOutputDto();
 		product.setId(1L);
 		product.setName("Arroz");
-		product.setBrand("Diana");
+		product.setBrand(new BrandDto());
+		product.getBrand().setId(1L);
+		product.getBrand().setName("Diana");
 		product.setPrice(2500d);
 		product.setCurrentNumItems(15);
 		product.setMinimunStock(5);
@@ -122,7 +141,9 @@ public class DummyMock {
 		productEntity1.setId(1L);
 		productEntity1.setContent(contentEntity().orElseThrow());
 		productEntity1.setName("Arroz");
-		productEntity1.setBrand("Diana");
+		productEntity1.setBrand(new BrandEntity());
+		productEntity1.getBrand().setId(1L);
+		productEntity1.getBrand().setName("Diana");
 		productEntity1.setPrice(2500d);
 		productEntity1.setCurrentNumItems(15);
 		productEntity1.setMinimunStock(5);
@@ -132,7 +153,9 @@ public class DummyMock {
 		productEntity2.setId(2L);
 		productEntity2.setContent(contentEntity().orElseThrow());
 		productEntity2.setName("Lenteja");
-		productEntity2.setBrand("Diana");
+		productEntity2.setBrand(new BrandEntity());
+		productEntity2.getBrand().setId(2L);
+		productEntity2.getBrand().setName("Diana");
 		productEntity2.setPrice(3000d);
 		productEntity2.setCurrentNumItems(15);
 		productEntity2.setMinimunStock(5);
@@ -142,7 +165,9 @@ public class DummyMock {
 		productEntity3.setId(1L);
 		productEntity3.setContent(contentEntity().orElseThrow());
 		productEntity3.setName("Frijol");
-		productEntity3.setBrand("Diana");
+		productEntity3.setBrand(new BrandEntity());
+		productEntity3.getBrand().setId(3L);
+		productEntity3.getBrand().setName("Diana");
 		productEntity3.setPrice(5000d);
 		productEntity3.setCurrentNumItems(15);
 		productEntity3.setMinimunStock(5);
@@ -161,7 +186,9 @@ public class DummyMock {
 		productOutputDto1.setId(1L);
 		productOutputDto1.setContent(contentOutputDto());
 		productOutputDto1.setName("Arroz");
-		productOutputDto1.setBrand("Diana");
+		productOutputDto1.setBrand(new BrandDto());
+		productOutputDto1.getBrand().setId(1L);
+		productOutputDto1.getBrand().setName("Diana");
 		productOutputDto1.setPrice(2500d);
 		productOutputDto1.setCurrentNumItems(15);
 		productOutputDto1.setMinimunStock(5);
@@ -171,7 +198,9 @@ public class DummyMock {
 		productOutputDto2.setId(2L);
 		productOutputDto2.setContent(contentOutputDto());
 		productOutputDto2.setName("Lenteja");
-		productOutputDto2.setBrand("Diana");
+		productOutputDto2.setBrand(new BrandDto());
+		productOutputDto2.getBrand().setId(2L);
+		productOutputDto2.getBrand().setName("Diana");
 		productOutputDto2.setPrice(3000d);
 		productOutputDto2.setCurrentNumItems(15);
 		productOutputDto2.setMinimunStock(5);
@@ -181,7 +210,9 @@ public class DummyMock {
 		productOutputDto3.setId(1L);
 		productOutputDto3.setContent(contentOutputDto());
 		productOutputDto3.setName("Frijol");
-		productOutputDto3.setBrand("Diana");
+		productOutputDto3.setBrand(new BrandDto());
+		productOutputDto3.getBrand().setId(3L);
+		productOutputDto3.getBrand().setName("Diana");
 		productOutputDto3.setPrice(5000d);
 		productOutputDto3.setCurrentNumItems(15);
 		productOutputDto3.setMinimunStock(5);

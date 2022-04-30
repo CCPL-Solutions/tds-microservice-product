@@ -2,6 +2,7 @@ package co.com.viveres.susy.microserviceproduct.dto;
 
 import java.io.Serializable;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -17,9 +18,9 @@ public class BaseProductDto implements Serializable {
 	@NotBlank
 	private String name;
 
+	@Valid
 	@NotNull
-	@NotBlank
-	private String brand;
+	private BrandDto brand;
 
 	@NotNull
 	private Double price;

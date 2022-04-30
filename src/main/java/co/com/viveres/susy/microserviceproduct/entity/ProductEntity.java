@@ -30,8 +30,9 @@ public class ProductEntity{
     @Column(name = "NAME", nullable = false)
     private String name;
 
-    @Column(name = "BRAND", nullable = false)
-    private String brand;
+    @ManyToOne
+    @JoinColumn(name = "ID_BRAND_FK", nullable = false)
+    private BrandEntity brand;
 
     @Column(name = "PRICE", nullable = false)
     private Double price;

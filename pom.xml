@@ -58,7 +58,7 @@
 			<groupId>co.com.viveres.susy.microservicecommons</groupId>
 			<artifactId>tds-microservice-commons</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		</dependency>		
+		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
