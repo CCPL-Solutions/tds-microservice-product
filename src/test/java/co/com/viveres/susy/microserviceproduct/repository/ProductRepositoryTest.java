@@ -15,10 +15,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import co.com.viveres.susy.microserviceproduct.entity.ProductEntity;
 
-@DataJpaTest
+//@DataJpaTest
 class ProductRepositoryTest {
 
-	@Autowired
+	/*@Autowired
 	private IProductRepository repository;
 
 	@Test
@@ -59,6 +59,6 @@ class ProductRepositoryTest {
 		assertNotNull(productUpdate);
 		assertEquals("Otro", productUpdate.getName());
 		
-	}
+	}*/
 
 }
