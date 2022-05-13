@@ -24,7 +24,7 @@ import co.com.viveres.susy.microservicecommons.repository.IMessageRepository;
 import co.com.viveres.susy.microserviceproduct.service.IContentTypeService;
 
 @WebMvcTest(ContentTypeApiImpl.class)
-public class ContentTypeApiImplTest {
+class ContentTypeApiImplTest {
 	
 	@Autowired
 	private MockMvc mvc;

@@ -20,7 +20,7 @@ import co.com.viveres.susy.microserviceproduct.dto.ContentOutputDto;
 import co.com.viveres.susy.microserviceproduct.repository.IContentRepository;
 
 @ExtendWith(MockitoExtension.class)
-public class ContentTypeServiceImplTest {
+class ContentTypeServiceImplTest {
 	
 	@Mock
 	private IContentRepository contentRepository;
@@ -29,7 +29,7 @@ public class ContentTypeServiceImplTest {
 	private ContentTypeServiceImpl service;
 	
 	@Test
-	public void findAllContentTest() {
+	void findAllContentTest() {
 		when(this.contentRepository.findAll()).thenReturn(contentEntityList());
 		
 		List<ContentOutputDto> contentOutputDtoListExpected = contentOutputDtoList();
