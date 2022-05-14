@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import co.com.viveres.susy.microserviceproduct.api.IProductApi;
-import co.com.viveres.susy.microserviceproduct.dto.ProductInputDto;
-import co.com.viveres.susy.microserviceproduct.dto.ProductOutputDto;
+import co.com.viveres.susy.microserviceproduct.dto.ProductDto;
 import co.com.viveres.susy.microserviceproduct.dto.StockDto;
 import co.com.viveres.susy.microserviceproduct.service.IProductService;
 
@@ -25,25 +24,25 @@ public class ProductApiImpl implements IProductApi {
     private IProductService service;
 
     @Override
-    public ResponseEntity<ProductOutputDto> create(ProductInputDto request) {
-        ProductOutputDto response = service.create(request);
+    public ResponseEntity<ProductDto> create(ProductDto request) {
+        ProductDto response = service.create(request);
         return this.buildCreatResponse(response);
     }
     
 	@Override
-	public ResponseEntity<List<ProductOutputDto>> findAll() {
-		List<ProductOutputDto> response = service.findAll();
+	public ResponseEntity<List<ProductDto>> findAll() {
+		List<ProductDto> response = service.findAll();
         return ResponseEntity.ok(response);
 	}
 
     @Override
-    public ResponseEntity<ProductOutputDto> findById(Long id) {
-        ProductOutputDto response = service.findById(id);
+    public ResponseEntity<ProductDto> findById(Long id) {
+        ProductDto response = service.findById(id);
         return ResponseEntity.ok(response);
     }
 
     @Override
-    public ResponseEntity<Void> update(Long id, ProductInputDto request) {
+    public ResponseEntity<Void> update(Long id, ProductDto request) {
         service.update(id, request);
         return ResponseEntity.ok().build();
     }
@@ -59,8 +58,8 @@ public class ProductApiImpl implements IProductApi {
 		return ResponseEntity.ok().build();
 	}
 	
-	private ResponseEntity<ProductOutputDto> buildCreatResponse(
-			ProductOutputDto response) {
+	private ResponseEntity<ProductDto> buildCreatResponse(
+			ProductDto response) {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{product-id}")
 				.buildAndExpand(response.getId()).toUri();

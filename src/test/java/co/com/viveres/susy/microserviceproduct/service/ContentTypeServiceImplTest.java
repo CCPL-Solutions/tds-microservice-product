@@ -16,7 +16,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import co.com.viveres.susy.microserviceproduct.dto.ContentOutputDto;
+import co.com.viveres.susy.microserviceproduct.dto.ContentDto;
 import co.com.viveres.susy.microserviceproduct.repository.IContentRepository;
 
 @ExtendWith(MockitoExtension.class)
@@ -32,8 +32,8 @@ class ContentTypeServiceImplTest {
 	void findAllContentTest() {
 		when(this.contentRepository.findAll()).thenReturn(contentEntityList());
 		
-		List<ContentOutputDto> contentOutputDtoListExpected = contentOutputDtoList();
-		List<ContentOutputDto> contentOutputDtoListActual = this.service.findAllContent();
+		List<ContentDto> contentOutputDtoListExpected = contentOutputDtoList();
+		List<ContentDto> contentOutputDtoListActual = this.service.findAllContent();
 		
 		verify(this.contentRepository).findAll();
 		

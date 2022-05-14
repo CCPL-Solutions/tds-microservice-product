@@ -6,10 +6,8 @@ import java.util.Optional;
 
 import co.com.viveres.susy.microservicecommons.entity.MessageEntity;
 import co.com.viveres.susy.microserviceproduct.dto.BrandDto;
-import co.com.viveres.susy.microserviceproduct.dto.ContentInputDto;
-import co.com.viveres.susy.microserviceproduct.dto.ContentOutputDto;
-import co.com.viveres.susy.microserviceproduct.dto.ProductInputDto;
-import co.com.viveres.susy.microserviceproduct.dto.ProductOutputDto;
+import co.com.viveres.susy.microserviceproduct.dto.ContentDto;
+import co.com.viveres.susy.microserviceproduct.dto.ProductDto;
 import co.com.viveres.susy.microserviceproduct.dto.StockDto;
 import co.com.viveres.susy.microserviceproduct.entity.BrandEntity;
 import co.com.viveres.susy.microserviceproduct.entity.ContentEntity;
@@ -78,14 +76,14 @@ public class DummyMock {
 		return Optional.of(message);	
 	}
 	
-	public static ContentInputDto contentInputDto() {
-		ContentInputDto contentInputDto = new ContentInputDto();
+	public static ContentDto contentInputDto() {
+		ContentDto contentInputDto = new ContentDto();
 		contentInputDto.setId(1L);
 		return contentInputDto;
 	}
 	
-	public static ProductInputDto productInputDto(){
-		ProductInputDto product =new ProductInputDto();
+	public static ProductDto productInputDto(){
+		ProductDto product =new ProductDto();
 		product.setName("Arroz");
 		product.setBrand(new BrandDto());
 		product.getBrand().setId(1L);
@@ -98,8 +96,8 @@ public class DummyMock {
 		return product;
 	}
 	
-	public static ProductInputDto productInputDtoUpdate(){
-		ProductInputDto product =new ProductInputDto();
+	public static ProductDto productInputDtoUpdate(){
+		ProductDto product =new ProductDto();
 		product.setName("Arroz");
 		product.setBrand(new BrandDto());
 		product.getBrand().setId(1L);
@@ -112,16 +110,16 @@ public class DummyMock {
 		return product;
 	}
 	
-	public static ContentOutputDto contentOutputDto() {
-		ContentOutputDto content = new ContentOutputDto();
+	public static ContentDto contentOutputDto() {
+		ContentDto content = new ContentDto();
 		content.setId(1L);
 		content.setMeasure("gramos");
 		content.setValue(500);
 		return content;
 	}
 	
-	public static ProductOutputDto productOutputDto(){
-		ProductOutputDto product =new ProductOutputDto();
+	public static ProductDto productOutputDto(){
+		ProductDto product =new ProductDto();
 		product.setId(1L);
 		product.setName("Arroz");
 		product.setBrand(new BrandDto());
@@ -180,9 +178,9 @@ public class DummyMock {
 		return productEntityList;
 	}
 	
-	public static List<ProductOutputDto> productOutputDtoList(){
-		List<ProductOutputDto> productOutputDtoList = new ArrayList<>();
-		ProductOutputDto productOutputDto1 =new ProductOutputDto();
+	public static List<ProductDto> productOutputDtoList(){
+		List<ProductDto> productOutputDtoList = new ArrayList<>();
+		ProductDto productOutputDto1 =new ProductDto();
 		productOutputDto1.setId(1L);
 		productOutputDto1.setContent(contentOutputDto());
 		productOutputDto1.setName("Arroz");
@@ -194,7 +192,7 @@ public class DummyMock {
 		productOutputDto1.setMinimunStock(5);
 		productOutputDto1.setDescription("Arroz Diana x 500 gramos");
 		
-		ProductOutputDto productOutputDto2 =new ProductOutputDto();
+		ProductDto productOutputDto2 =new ProductDto();
 		productOutputDto2.setId(2L);
 		productOutputDto2.setContent(contentOutputDto());
 		productOutputDto2.setName("Lenteja");
@@ -206,7 +204,7 @@ public class DummyMock {
 		productOutputDto2.setMinimunStock(5);
 		productOutputDto2.setDescription("Lenteja Diana x 500 gramos");
 		
-		ProductOutputDto productOutputDto3 =new ProductOutputDto();
+		ProductDto productOutputDto3 =new ProductDto();
 		productOutputDto3.setId(1L);
 		productOutputDto3.setContent(contentOutputDto());
 		productOutputDto3.setName("Frijol");
@@ -257,20 +255,20 @@ public class DummyMock {
 		return contentEntityList;
 	}
 	
-	public static List<ContentOutputDto> contentOutputDtoList() {
-		List<ContentOutputDto> ContentOutputDtoList = new ArrayList<>();
+	public static List<ContentDto> contentOutputDtoList() {
+		List<ContentDto> ContentOutputDtoList = new ArrayList<>();
 		
-		ContentOutputDto content = new ContentOutputDto();
+		ContentDto content = new ContentDto();
 		content.setId(1L);
 		content.setMeasure("gramos");
 		content.setValue(500);
 		
-		ContentOutputDto content2 = new ContentOutputDto();
+		ContentDto content2 = new ContentDto();
 		content2.setId(2L);
 		content2.setMeasure("gramos");
 		content2.setValue(750);
 		
-		ContentOutputDto content3 = new ContentOutputDto();
+		ContentDto content3 = new ContentDto();
 		content3.setId(3L);
 		content3.setMeasure("gramos");
 		content.setValue(1000);

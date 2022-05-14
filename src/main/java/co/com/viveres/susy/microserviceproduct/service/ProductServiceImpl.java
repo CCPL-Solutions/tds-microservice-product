@@ -12,9 +12,8 @@ import co.com.viveres.susy.microservicecommons.entity.MessageEntity;
 import co.com.viveres.susy.microservicecommons.exceptions.GenericException;
 import co.com.viveres.susy.microservicecommons.repository.IMessageRepository;
 import co.com.viveres.susy.microserviceproduct.dto.BrandDto;
-import co.com.viveres.susy.microserviceproduct.dto.ContentOutputDto;
-import co.com.viveres.susy.microserviceproduct.dto.ProductInputDto;
-import co.com.viveres.susy.microserviceproduct.dto.ProductOutputDto;
+import co.com.viveres.susy.microserviceproduct.dto.ContentDto;
+import co.com.viveres.susy.microserviceproduct.dto.ProductDto;
 import co.com.viveres.susy.microserviceproduct.dto.StockDto;
 import co.com.viveres.susy.microserviceproduct.entity.BrandEntity;
 import co.com.viveres.susy.microserviceproduct.entity.ContentEntity;
@@ -37,7 +36,7 @@ public class ProductServiceImpl implements IProductService {
 	private IBrandRepository brandRepository;
 
 	@Override
-	public ProductOutputDto create(ProductInputDto productDto) {
+	public ProductDto create(ProductDto productDto) {
 		this.validateProductAlreadyExist(productDto);
 
 		ProductEntity productEntity = new ProductEntity();
@@ -47,7 +46,7 @@ public class ProductServiceImpl implements IProductService {
 		return this.mapOutProductEntityToDto(newProductEntity);
 	}
 
-	private void validateProductAlreadyExist(ProductInputDto productDto) {
+	private void validateProductAlreadyExist(ProductDto productDto) {
 
 		ContentEntity contentEntity = this.contentRepository.findById(productDto.getContent().getId())
 				.orElseThrow(() -> new GenericException(new MessageEntity()));
@@ -71,7 +70,7 @@ public class ProductServiceImpl implements IProductService {
 					
 	}
 
-	private ProductEntity mapInProductDtoToEntity(ProductEntity productEntity, ProductInputDto productDto) {
+	private ProductEntity mapInProductDtoToEntity(ProductEntity productEntity, ProductDto productDto) {
 
 		ContentEntity contentEntity = this.contentRepository.findById(productDto.getContent().getId())
 				.orElseThrow(() -> this.setGenericException(ResponseMessages.CONTENT_DOES_NOT_EXIST,
@@ -91,9 +90,9 @@ public class ProductServiceImpl implements IProductService {
 		return productEntity;
 	}
 
-	private ProductOutputDto mapOutProductEntityToDto(ProductEntity productEntity) {
+	private ProductDto mapOutProductEntityToDto(ProductEntity productEntity) {
 
-		ProductOutputDto productDto = new ProductOutputDto();
+		ProductDto productDto = new ProductDto();
 		productDto.setId(productEntity.getId());
 		productDto.setName(productEntity.getName());
 		productDto.setBrand(new BrandDto());
@@ -103,7 +102,7 @@ public class ProductServiceImpl implements IProductService {
 		productDto.setCurrentNumItems(productEntity.getCurrentNumItems());
 		productDto.setMinimunStock(productEntity.getMinimunStock());
 		productDto.setDescription(productEntity.getDescription());
-		productDto.setContent(new ContentOutputDto());
+		productDto.setContent(new ContentDto());
 		productDto.getContent().setId(productEntity.getContent().getId());
 		productDto.getContent().setMeasure(productEntity.getContent().getMeasureType().getName());
 		productDto.getContent().setValue(productEntity.getContent().getValue());
@@ -112,29 +111,29 @@ public class ProductServiceImpl implements IProductService {
 	}
 
 	@Override
-	public List<ProductOutputDto> findAll() {			
+	public List<ProductDto> findAll() {			
 		List<ProductEntity> productEntityList = this.productRepository.findAll();
 		return this.mapOutListProductEntityToDto(productEntityList);
 	}
 
-	private List<ProductOutputDto> mapOutListProductEntityToDto(List<ProductEntity> productEntityList) {
-		List<ProductOutputDto> productDtoList = new ArrayList<>();
+	private List<ProductDto> mapOutListProductEntityToDto(List<ProductEntity> productEntityList) {
+		List<ProductDto> productDtoList = new ArrayList<>();
 		productEntityList.forEach(productEntity -> {
-			ProductOutputDto productDto = this.mapOutProductEntityToDto(productEntity);
+			ProductDto productDto = this.mapOutProductEntityToDto(productEntity);
 			productDtoList.add(productDto);
 		});
 		return productDtoList;
 	}
 
 	@Override
-	public ProductOutputDto findById(Long id) {
+	public ProductDto findById(Long id) {
 		ProductEntity productEntity = this.productRepository.findById(id)
 				.orElseThrow(() -> this.setGenericException(ResponseMessages.PRODUCT_DOES_NOT_EXIST,String.valueOf(id)));
 		return this.mapOutProductEntityToDto(productEntity);
 	}
 
 	@Override
-	public void update(Long id, ProductInputDto productDto) {
+	public void update(Long id, ProductDto productDto) {
 
 		ProductEntity productEntity = this.productRepository.findById(id)
 				.orElseThrow(() -> this.setGenericException(ResponseMessages.PRODUCT_DOES_NOT_EXIST,String.valueOf(id)));

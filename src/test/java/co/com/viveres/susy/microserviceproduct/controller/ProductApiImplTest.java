@@ -21,8 +21,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import co.com.viveres.susy.microservicecommons.repository.IMessageRepository;
-import co.com.viveres.susy.microserviceproduct.dto.ProductInputDto;
-import co.com.viveres.susy.microserviceproduct.dto.ProductOutputDto;
+import co.com.viveres.susy.microserviceproduct.dto.ProductDto;
 import co.com.viveres.susy.microserviceproduct.service.IProductService;
 
 @WebMvcTest(ProductApiImpl.class)
@@ -46,7 +45,7 @@ class ProductApiImplTest {
 	
 	@Test
 	void createTest() throws JsonProcessingException, Exception {
-		when(this.service.create(any(ProductInputDto.class))).thenReturn(productOutputDto());
+		when(this.service.create(any(ProductDto.class))).thenReturn(productOutputDto());
 		
 		this.mvc.perform(post("/v1/product")
 				.contentType(MediaType.APPLICATION_JSON)
@@ -59,7 +58,7 @@ class ProductApiImplTest {
 	@Test
 	void findAllTest() throws JsonProcessingException, Exception {
 		
-		List<ProductOutputDto> productOutputDtoList = productOutputDtoList();
+		List<ProductDto> productOutputDtoList = productOutputDtoList();
 		
 		when(this.service.findAll()).thenReturn(productOutputDtoList);
 		

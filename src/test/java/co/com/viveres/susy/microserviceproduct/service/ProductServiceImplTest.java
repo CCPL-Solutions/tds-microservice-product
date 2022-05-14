@@ -1,6 +1,14 @@
 package co.com.viveres.susy.microserviceproduct.service;
 
-import static co.com.viveres.susy.microserviceproduct.DummyMock.*;
+import static co.com.viveres.susy.microserviceproduct.DummyMock.brandEntity;
+import static co.com.viveres.susy.microserviceproduct.DummyMock.contentEntity;
+import static co.com.viveres.susy.microserviceproduct.DummyMock.productEntity;
+import static co.com.viveres.susy.microserviceproduct.DummyMock.productEntityList;
+import static co.com.viveres.susy.microserviceproduct.DummyMock.productInputDto;
+import static co.com.viveres.susy.microserviceproduct.DummyMock.productInputDtoUpdate;
+import static co.com.viveres.susy.microserviceproduct.DummyMock.productOutputDto;
+import static co.com.viveres.susy.microserviceproduct.DummyMock.productOutputDtoList;
+import static co.com.viveres.susy.microserviceproduct.DummyMock.stockDto;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -23,7 +31,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import co.com.viveres.susy.microservicecommons.exceptions.GenericException;
 import co.com.viveres.susy.microservicecommons.repository.IMessageRepository;
-import co.com.viveres.susy.microserviceproduct.dto.ProductOutputDto;
+import co.com.viveres.susy.microserviceproduct.dto.ProductDto;
 import co.com.viveres.susy.microserviceproduct.entity.BrandEntity;
 import co.com.viveres.susy.microserviceproduct.entity.ContentEntity;
 import co.com.viveres.susy.microserviceproduct.entity.ProductEntity;
@@ -61,22 +69,22 @@ class ProductServiceImplTest {
 		when(this.productRepository.findByNameAndBrandAndContent(anyString(), any(BrandEntity.class), any(ContentEntity.class))).thenReturn(Optional.empty());
 		when(this.productRepository.save(any(ProductEntity.class))).thenReturn(productEntity().orElseThrow());
 
-		ProductOutputDto productOutputDtoExpected = productOutputDto();
-		ProductOutputDto productOutputDtoActual = this.productService.create(productInputDto());
+		ProductDto ProductDtoExpected = productOutputDto();
+		ProductDto ProductDtoActual = this.productService.create(productInputDto());
 		
 		verify(this.contentRepository, times(2)).findById(anyLong());
 		verify(this.productRepository).findByNameAndBrandAndContent(anyString(), any(BrandEntity.class), any(ContentEntity.class));
 		
-		assertNotNull(productOutputDtoActual);
-		assertEquals(productOutputDtoExpected, productOutputDtoActual);			
+		assertNotNull(ProductDtoActual);
+		assertEquals(ProductDtoExpected, ProductDtoActual);			
 	}
 	
 	@Test
 	void findAllTest() {
 		when(this.productRepository.findAll()).thenReturn(productEntityList());
 		
-		List<ProductOutputDto> productDtoListExpected = productOutputDtoList();
-		List<ProductOutputDto> productDtoListActual = this.productService.findAll();
+		List<ProductDto> productDtoListExpected = productOutputDtoList();
+		List<ProductDto> productDtoListActual = this.productService.findAll();
 		
 		verify(this.productRepository).findAll();
 		assertEquals(productDtoListExpected, productDtoListActual);
@@ -86,8 +94,8 @@ class ProductServiceImplTest {
 	void findAllNoDataTest() {
 		when(this.productRepository.findAll()).thenReturn(new ArrayList<>());
 		
-		List<ProductOutputDto> productDtoListExpected = new ArrayList<>();
-		List<ProductOutputDto> productDtoListActual = this.productService.findAll();
+		List<ProductDto> productDtoListExpected = new ArrayList<>();
+		List<ProductDto> productDtoListActual = this.productService.findAll();
 		
 		verify(this.productRepository).findAll();
 		assertEquals(productDtoListExpected, productDtoListActual);
@@ -97,11 +105,11 @@ class ProductServiceImplTest {
 	void findByIdTest() {
 		when(this.productRepository.findById(anyLong())).thenReturn(productEntity());
 		
-		ProductOutputDto productOutputDtoExpected = productOutputDto();
-		ProductOutputDto productOutputDtoActual = this.productService.findById(1L);
+		ProductDto ProductDtoExpected = productOutputDto();
+		ProductDto ProductDtoActual = this.productService.findById(1L);
 		
-		assertNotNull(productOutputDtoActual);
-		assertEquals(productOutputDtoExpected, productOutputDtoActual);
+		assertNotNull(ProductDtoActual);
+		assertEquals(ProductDtoExpected, ProductDtoActual);
 	}
 	
 	@Test

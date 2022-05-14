@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.com.viveres.susy.microserviceproduct.dto.ContentOutputDto;
+import co.com.viveres.susy.microserviceproduct.dto.ContentDto;
 import co.com.viveres.susy.microserviceproduct.entity.ContentEntity;
 import co.com.viveres.susy.microserviceproduct.repository.IContentRepository;
 
@@ -17,7 +17,7 @@ public class ContentTypeServiceImpl implements IContentTypeService {
 	private IContentRepository contentRepository;
 
 	@Override
-	public List<ContentOutputDto> findAllContent() {
+	public List<ContentDto> findAllContent() {
 		List<ContentEntity> contentEntityList = this.contentRepository.findAll();		
 		
 		return contentEntityList.stream()
@@ -25,8 +25,8 @@ public class ContentTypeServiceImpl implements IContentTypeService {
 				.collect(Collectors.toList());
 	}
 	
-	private ContentOutputDto mapOutContentEntityToDto(ContentEntity contentEntity) {
-		ContentOutputDto contentDto = new ContentOutputDto();
+	private ContentDto mapOutContentEntityToDto(ContentEntity contentEntity) {
+		ContentDto contentDto = new ContentDto();
 		contentDto.setId(contentEntity.getId());
 		contentDto.setMeasure(contentEntity.getMeasureType().getName());
 		contentDto.setValue(contentEntity.getValue());

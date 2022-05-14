@@ -9,16 +9,19 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-@ApiModel(value = "Brand")
-public class BrandDto implements Serializable {
+@ApiModel(value = "Content")
+public class ContentDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@NotNull
-	@ApiModelProperty(notes = "Brand Id", example = "1")
+	@ApiModelProperty(notes = "Content Id", example = "1")
 	private Long id;
 	
-	@ApiModelProperty(notes = "Brand name", example = "Diana")
-	private String name;
+	@ApiModelProperty(notes = "Measure", example = "gramos")
+	private String measure;
+	
+	@ApiModelProperty(notes = "Value", example = "500")
+	private Integer value;
 
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.viveres.susy.microserviceproduct.api.IContentTypeApi;
-import co.com.viveres.susy.microserviceproduct.dto.ContentOutputDto;
+import co.com.viveres.susy.microserviceproduct.dto.ContentDto;
 import co.com.viveres.susy.microserviceproduct.service.IContentTypeService;
 
 @CrossOrigin("*")
@@ -21,8 +21,8 @@ public class ContentTypeApiImpl implements IContentTypeApi {
 	private IContentTypeService service;
 
 	@Override
-	public ResponseEntity<List<ContentOutputDto>> findAllContent() {
-		List<ContentOutputDto> response = this.service.findAllContent();
+	public ResponseEntity<List<ContentDto>> findAllContent() {
+		List<ContentDto> response = this.service.findAllContent();
 		return ResponseEntity.ok(response);
 	}
 
