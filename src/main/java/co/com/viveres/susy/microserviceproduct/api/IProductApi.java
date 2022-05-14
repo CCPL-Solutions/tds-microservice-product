@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import co.com.viveres.susy.microservicecommons.dto.ErrorDto;
-import co.com.viveres.susy.microserviceproduct.dto.ProductDto;
-import co.com.viveres.susy.microserviceproduct.dto.StockDto;
+import co.com.viveres.susy.microservicecommons.dto.ProductDto;
+import co.com.viveres.susy.microservicecommons.dto.StockDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -34,11 +33,11 @@ public interface IProductApi {
 		@ApiResponse(code = 201, message = "Create", responseHeaders = {
 			@ResponseHeader(name = "location", description = "Link to the created product", response = String.class)
 		}),
-		@ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
-		@ApiResponse(code = 401, message = "Unauthorizedconpepe"),
+		@ApiResponse(code = 400, message = "Bad request"),
+		@ApiResponse(code = 401, message = "Unauthorized"),
 		@ApiResponse(code = 403, message = "Forbidden"),
 		@ApiResponse(code = 404, message = "Not Found"),
-		@ApiResponse(code = 500, message = "Internal server error con pepe")
+		@ApiResponse(code = 500, message = "Internal server error")
 	})
     @PostMapping(
         path = "", 
@@ -52,7 +51,7 @@ public interface IProductApi {
 		notes = "This operation allows to list products",
 		produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "OK"),
+			@ApiResponse(code = 200, message = "OK", response = ProductDto[].class),
 			@ApiResponse(code = 400, message = "Bad request"),
 			@ApiResponse(code = 401, message = "Unauthorized"),
 			@ApiResponse(code = 403, message = "Forbidden"),
@@ -69,7 +68,7 @@ public interface IProductApi {
 		notes = "This operation allows to find a product by identifier.",
 		produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponses(value = {
-		@ApiResponse(code = 200, message = "OK"),
+		@ApiResponse(code = 200, message = "OK", response = ProductDto.class),
 		@ApiResponse(code = 400, message = "Bad request"),
 		@ApiResponse(code = 401, message = "Unauthorized"),
 		@ApiResponse(code = 403, message = "Forbidden"),
@@ -101,7 +100,7 @@ public interface IProductApi {
     		@RequestBody ProductDto request);
 
 	@ApiOperation(
-		value = "updateProduct", 
+		value = "deleteProduct", 
 		notes = "This operation allows to delete a product.")
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "OK"),
@@ -120,7 +119,7 @@ public interface IProductApi {
 		notes = "This operation allows to update the stock of the product by adding or removing units.")
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "OK"),
-		@ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
+		@ApiResponse(code = 400, message = "Bad request"),
 		@ApiResponse(code = 401, message = "Unauthorized"),
 		@ApiResponse(code = 403, message = "Forbidden"),
 		@ApiResponse(code = 404, message = "Not Found"),

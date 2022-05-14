@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import co.com.viveres.susy.microserviceproduct.dto.ContentDto;
+import co.com.viveres.susy.microservicecommons.dto.ContentDto;
 
 public interface IContentTypeApi {
 

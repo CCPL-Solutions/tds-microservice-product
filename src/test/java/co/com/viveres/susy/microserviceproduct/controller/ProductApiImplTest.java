@@ -1,10 +1,19 @@
 package co.com.viveres.susy.microserviceproduct.controller;
 
-import static co.com.viveres.susy.microserviceproduct.DummyMock.*;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static co.com.viveres.susy.microserviceproduct.DummyMock.productInputDto;
+import static co.com.viveres.susy.microserviceproduct.DummyMock.productInputDtoUpdate;
+import static co.com.viveres.susy.microserviceproduct.DummyMock.productOutputDto;
+import static co.com.viveres.susy.microserviceproduct.DummyMock.productOutputDtoList;
+import static co.com.viveres.susy.microserviceproduct.DummyMock.stockDto;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.List;
 
@@ -20,8 +29,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import co.com.viveres.susy.microservicecommons.dto.ProductDto;
 import co.com.viveres.susy.microservicecommons.repository.IMessageRepository;
-import co.com.viveres.susy.microserviceproduct.dto.ProductDto;
 import co.com.viveres.susy.microserviceproduct.service.IProductService;
 
 @WebMvcTest(ProductApiImpl.class)

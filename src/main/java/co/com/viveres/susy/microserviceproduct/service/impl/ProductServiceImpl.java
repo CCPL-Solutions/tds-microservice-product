@@ -1,4 +1,4 @@
-package co.com.viveres.susy.microserviceproduct.service;
+package co.com.viveres.susy.microserviceproduct.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,19 +8,20 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.com.viveres.susy.microservicecommons.dto.BrandDto;
+import co.com.viveres.susy.microservicecommons.dto.ContentDto;
+import co.com.viveres.susy.microservicecommons.dto.ProductDto;
+import co.com.viveres.susy.microservicecommons.dto.StockDto;
 import co.com.viveres.susy.microservicecommons.entity.MessageEntity;
 import co.com.viveres.susy.microservicecommons.exceptions.GenericException;
 import co.com.viveres.susy.microservicecommons.repository.IMessageRepository;
-import co.com.viveres.susy.microserviceproduct.dto.BrandDto;
-import co.com.viveres.susy.microserviceproduct.dto.ContentDto;
-import co.com.viveres.susy.microserviceproduct.dto.ProductDto;
-import co.com.viveres.susy.microserviceproduct.dto.StockDto;
 import co.com.viveres.susy.microserviceproduct.entity.BrandEntity;
 import co.com.viveres.susy.microserviceproduct.entity.ContentEntity;
 import co.com.viveres.susy.microserviceproduct.entity.ProductEntity;
 import co.com.viveres.susy.microserviceproduct.repository.IBrandRepository;
 import co.com.viveres.susy.microserviceproduct.repository.IContentRepository;
 import co.com.viveres.susy.microserviceproduct.repository.IProductRepository;
+import co.com.viveres.susy.microserviceproduct.service.IProductService;
 import co.com.viveres.susy.microserviceproduct.util.ResponseMessages;
 
 @Service

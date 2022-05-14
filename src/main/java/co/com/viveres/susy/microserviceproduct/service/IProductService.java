@@ -2,8 +2,8 @@ package co.com.viveres.susy.microserviceproduct.service;
 
 import java.util.List;
 
-import co.com.viveres.susy.microserviceproduct.dto.ProductDto;
-import co.com.viveres.susy.microserviceproduct.dto.StockDto;
+import co.com.viveres.susy.microservicecommons.dto.ProductDto;
+import co.com.viveres.susy.microservicecommons.dto.StockDto;
 
 public interface IProductService {
 

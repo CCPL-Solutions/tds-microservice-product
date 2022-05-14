@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import co.com.viveres.susy.microservicecommons.dto.ProductDto;
+import co.com.viveres.susy.microservicecommons.dto.StockDto;
 import co.com.viveres.susy.microserviceproduct.api.IProductApi;
-import co.com.viveres.susy.microserviceproduct.dto.ProductDto;
-import co.com.viveres.susy.microserviceproduct.dto.StockDto;
 import co.com.viveres.susy.microserviceproduct.service.IProductService;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/v1/product")
+@RequestMapping("/v1/products")
 public class ProductApiImpl implements IProductApi {
 
     @Autowired
