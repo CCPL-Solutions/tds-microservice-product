@@ -4,17 +4,20 @@ import java.util.List;
 
 import co.com.viveres.susy.microservicecommons.dto.ProductDto;
 import co.com.viveres.susy.microservicecommons.dto.StockDto;
+import co.com.viveres.susy.microservicecommons.exceptions.GenericException;
 
 public interface IProductService {
 
-	public ProductDto create(ProductDto request);
+	ProductDto create(ProductDto request);
 
-	public List<ProductDto> findAll();
+	List<ProductDto> findAll();
 
-	public ProductDto findById(Long id);
+	ProductDto findById(Long id);
 
-	public void update(Long id, ProductDto request);
+	void update(Long id, ProductDto request);
 
-	public void stockManagementByProduct(Long productId, StockDto movement);
+	void stockManagementByProduct(Long productId, StockDto movement);
+	
+	GenericException setGenericException(String responseMessage, String value);
 
 }

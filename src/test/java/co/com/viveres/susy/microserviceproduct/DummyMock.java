@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import co.com.viveres.susy.microservicecommons.dto.BrandDto;
 import co.com.viveres.susy.microservicecommons.dto.ContentDto;
+import co.com.viveres.susy.microservicecommons.dto.MeasureTypeDto;
 import co.com.viveres.susy.microservicecommons.dto.ProductDto;
 import co.com.viveres.susy.microservicecommons.dto.StockDto;
 import co.com.viveres.susy.microservicecommons.entity.MessageEntity;
@@ -113,7 +114,9 @@ public class DummyMock {
 	public static ContentDto contentOutputDto() {
 		ContentDto content = new ContentDto();
 		content.setId(1L);
-		content.setMeasure("gramos");
+		content.setMeasure(new MeasureTypeDto());
+		content.getMeasure().setId(1L);
+		content.getMeasure().setName("gramos");
 		content.setValue(500);
 		return content;
 	}
@@ -260,17 +263,23 @@ public class DummyMock {
 		
 		ContentDto content = new ContentDto();
 		content.setId(1L);
-		content.setMeasure("gramos");
+		content.setMeasure(new MeasureTypeDto());
+		content.getMeasure().setId(1L);
+		content.getMeasure().setName("gramos");
 		content.setValue(500);
 		
 		ContentDto content2 = new ContentDto();
 		content2.setId(2L);
-		content2.setMeasure("gramos");
+		content.setMeasure(new MeasureTypeDto());
+		content.getMeasure().setId(1L);
+		content.getMeasure().setName("gramos");
 		content2.setValue(750);
 		
 		ContentDto content3 = new ContentDto();
 		content3.setId(3L);
-		content3.setMeasure("gramos");
+		content.setMeasure(new MeasureTypeDto());
+		content.getMeasure().setId(1L);
+		content.getMeasure().setName("gramos");
 		content.setValue(1000);
 		
 		ContentOutputDtoList.add(content);

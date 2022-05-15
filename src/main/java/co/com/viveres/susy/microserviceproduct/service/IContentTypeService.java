@@ -5,7 +5,8 @@ import java.util.List;
 import co.com.viveres.susy.microservicecommons.dto.ContentDto;
 
 public interface IContentTypeService {
+	
+	ContentDto create(ContentDto contentDto);
 
-	public List<ContentDto> findAllContent();
-
+	List<ContentDto> findAllContent();
 }

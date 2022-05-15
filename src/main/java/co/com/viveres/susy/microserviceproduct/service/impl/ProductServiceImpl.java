@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import co.com.viveres.susy.microservicecommons.dto.BrandDto;
 import co.com.viveres.susy.microservicecommons.dto.ContentDto;
+import co.com.viveres.susy.microservicecommons.dto.MeasureTypeDto;
 import co.com.viveres.susy.microservicecommons.dto.ProductDto;
 import co.com.viveres.susy.microservicecommons.dto.StockDto;
 import co.com.viveres.susy.microservicecommons.entity.MessageEntity;
@@ -105,7 +106,9 @@ public class ProductServiceImpl implements IProductService {
 		productDto.setDescription(productEntity.getDescription());
 		productDto.setContent(new ContentDto());
 		productDto.getContent().setId(productEntity.getContent().getId());
-		productDto.getContent().setMeasure(productEntity.getContent().getMeasureType().getName());
+		productDto.getContent().setMeasure(new MeasureTypeDto());
+		productDto.getContent().getMeasure().setId(productEntity.getContent().getMeasureType().getId());
+		productDto.getContent().getMeasure().setName(productEntity.getContent().getMeasureType().getName());
 		productDto.getContent().setValue(productEntity.getContent().getValue());
 
 		return productDto;
@@ -160,7 +163,8 @@ public class ProductServiceImpl implements IProductService {
 
 	}
 	
-	private GenericException setGenericException(String responseMessage, String value) {		
+	@Override
+	public GenericException setGenericException(String responseMessage, String value) {		
 		MessageEntity message = this.messageRepository.findById(responseMessage)
 				.orElseThrow(NoSuchElementException::new);
 		message.setDescripction(String.format(message.getDescripction(), value));
