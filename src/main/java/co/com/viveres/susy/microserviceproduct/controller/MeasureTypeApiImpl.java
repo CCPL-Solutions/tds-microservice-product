@@ -48,4 +48,10 @@ public class MeasureTypeApiImpl implements IMeasureTypeApi {
 		return ResponseEntity.created(uri).body(response);
 	}
 
+	@Override
+	public ResponseEntity<Void> update(Long id, MeasureTypeDto measureDto) {
+		this.service.update(id, measureDto);
+		return ResponseEntity.ok().build();
+	}
+
 }

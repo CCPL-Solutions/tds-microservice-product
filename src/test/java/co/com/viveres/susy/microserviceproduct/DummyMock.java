@@ -28,7 +28,7 @@ public class DummyMock {
 		ContentEntity content = new ContentEntity();
 		content.setId(1L);
 		content.setMeasureType(measureType());
-		content.setValue(500);
+		content.setValue(500d);
 		return Optional.of(content);
 	}
 	
@@ -117,7 +117,7 @@ public class DummyMock {
 		content.setMeasure(new MeasureTypeDto());
 		content.getMeasure().setId(1L);
 		content.getMeasure().setName("gramos");
-		content.setValue(500);
+		content.setValue(500d);
 		return content;
 	}
 	
@@ -239,17 +239,17 @@ public class DummyMock {
 		ContentEntity content = new ContentEntity();
 		content.setId(1L);
 		content.setMeasureType(measureType());
-		content.setValue(500);
+		content.setValue(500d);
 		
 		ContentEntity content2 = new ContentEntity();
 		content2.setId(2L);
 		content2.setMeasureType(measureType());
-		content2.setValue(750);
+		content2.setValue(750d);
 		
 		ContentEntity content3 = new ContentEntity();
 		content3.setId(3L);
 		content3.setMeasureType(measureType());
-		content.setValue(1000);
+		content.setValue(1000d);
 		
 		contentEntityList.add(content);
 		contentEntityList.add(content2);
@@ -266,21 +266,21 @@ public class DummyMock {
 		content.setMeasure(new MeasureTypeDto());
 		content.getMeasure().setId(1L);
 		content.getMeasure().setName("gramos");
-		content.setValue(500);
+		content.setValue(500d);
 		
 		ContentDto content2 = new ContentDto();
 		content2.setId(2L);
 		content.setMeasure(new MeasureTypeDto());
 		content.getMeasure().setId(1L);
 		content.getMeasure().setName("gramos");
-		content2.setValue(750);
+		content2.setValue(750d);
 		
 		ContentDto content3 = new ContentDto();
 		content3.setId(3L);
 		content.setMeasure(new MeasureTypeDto());
 		content.getMeasure().setId(1L);
 		content.getMeasure().setName("gramos");
-		content.setValue(1000);
+		content.setValue(1000d);
 		
 		ContentOutputDtoList.add(content);
 		ContentOutputDtoList.add(content2);

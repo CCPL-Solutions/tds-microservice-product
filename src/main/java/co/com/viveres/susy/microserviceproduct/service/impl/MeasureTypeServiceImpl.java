@@ -79,4 +79,12 @@ public class MeasureTypeServiceImpl implements IMeasureTypeService {
 				String.valueOf(measureId)));
 	}
 
+	@Override
+	public void update(Long measureId, MeasureTypeDto measureTypeDto) {
+		MeasureTypeEntity measureEntity = this.findMeasureTypeEntityById(measureId);
+		measureEntity.setId(measureId);
+		measureEntity.setName(measureTypeDto.getName());
+		this.persist(measureEntity);
+	}
+
 }

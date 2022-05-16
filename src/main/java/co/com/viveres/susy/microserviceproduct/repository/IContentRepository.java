@@ -12,5 +12,5 @@ import co.com.viveres.susy.microserviceproduct.entity.MeasureTypeEntity;
 public interface IContentRepository extends JpaRepository<ContentEntity, Long>{
   
 	Optional<ContentEntity> findByMeasureTypeAndValue(
-			MeasureTypeEntity measureType, Integer value);
+			MeasureTypeEntity measureType, Double value);
 }

@@ -28,6 +28,6 @@ public class ContentEntity{
     private MeasureTypeEntity measureType;
     
     @Column(name = "VALUE", unique = false, nullable = false)
-    private Integer value;
+    private Double value;
 
 }
