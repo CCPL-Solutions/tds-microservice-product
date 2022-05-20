@@ -56,7 +56,7 @@ class ProductApiImplTest {
 	void createTest() throws JsonProcessingException, Exception {
 		when(this.service.create(any(ProductDto.class))).thenReturn(productOutputDto());
 		
-		this.mvc.perform(post("/v1/product")
+		this.mvc.perform(post("/v1/products")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(this.objectMapper.writeValueAsString(productInputDto())))
 			.andExpect(status().isCreated())
@@ -71,7 +71,7 @@ class ProductApiImplTest {
 		
 		when(this.service.findAll()).thenReturn(productOutputDtoList);
 		
-		this.mvc.perform(get("/v1/product")
+		this.mvc.perform(get("/v1/products")
 				.contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -83,7 +83,7 @@ class ProductApiImplTest {
 	void findByIdTest() throws JsonProcessingException, Exception {
 		when(this.service.findById(anyLong())).thenReturn(productOutputDto());
 		
-		this.mvc.perform(get("/v1/product/1")
+		this.mvc.perform(get("/v1/products/1")
 				.contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -92,7 +92,7 @@ class ProductApiImplTest {
 	
 	@Test	
 	void updateTest() throws JsonProcessingException, Exception {
-		this.mvc.perform(put("/v1/product/1")
+		this.mvc.perform(put("/v1/products/1")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(this.objectMapper.writeValueAsString(productInputDtoUpdate())))
 			.andExpect(status().isOk());
@@ -100,7 +100,7 @@ class ProductApiImplTest {
 	
 	@Test	
 	void stockManagementByProductTest() throws JsonProcessingException, Exception {
-		this.mvc.perform(put("/v1/product/1/stock")
+		this.mvc.perform(put("/v1/products/1/stock")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(this.objectMapper.writeValueAsString(stockDto("add"))))
 			.andExpect(status().isOk());
