@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import co.com.viveres.susy.microservicecommons.dto.BrandDto;
 import co.com.viveres.susy.microservicecommons.entity.MessageEntity;
-import co.com.viveres.susy.microservicecommons.exceptions.GenericException;
+import co.com.viveres.susy.microservicecommons.exception.GenericException;
 import co.com.viveres.susy.microservicecommons.repository.IMessageRepository;
 import co.com.viveres.susy.microserviceproduct.entity.BrandEntity;
 import co.com.viveres.susy.microserviceproduct.repository.IBrandRepository;

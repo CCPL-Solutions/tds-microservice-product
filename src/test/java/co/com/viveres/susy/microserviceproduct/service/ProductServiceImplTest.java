@@ -30,7 +30,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import co.com.viveres.susy.microservicecommons.dto.ProductDto;
-import co.com.viveres.susy.microservicecommons.exceptions.GenericException;
+import co.com.viveres.susy.microservicecommons.exception.GenericException;
 import co.com.viveres.susy.microservicecommons.repository.IMessageRepository;
 import co.com.viveres.susy.microserviceproduct.entity.BrandEntity;
 import co.com.viveres.susy.microserviceproduct.entity.ContentEntity;
