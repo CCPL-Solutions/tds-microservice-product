@@ -39,6 +39,5 @@ public class SpringFoxConfig {
             .version("1.0.0")
             .contact(new Contact("Pedro luis Chavez Castro","", "pedro.chavezcastro@outlook.com"))
             .build();
-    }
-
+	}
 }
