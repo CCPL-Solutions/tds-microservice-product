@@ -14,7 +14,6 @@ import co.com.viveres.susy.microservicecommons.dto.BrandDto;
 import co.com.viveres.susy.microserviceproduct.api.IBrandApi;
 import co.com.viveres.susy.microserviceproduct.service.IBrandService;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/v1/brands")
 public class BrandApiImpl implements IBrandApi {

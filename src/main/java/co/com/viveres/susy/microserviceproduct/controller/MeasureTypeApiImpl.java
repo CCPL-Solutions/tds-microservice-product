@@ -14,7 +14,6 @@ import co.com.viveres.susy.microservicecommons.dto.MeasureTypeDto;
 import co.com.viveres.susy.microserviceproduct.api.IMeasureTypeApi;
 import co.com.viveres.susy.microserviceproduct.service.IMeasureTypeService;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/v1/measure-type")
 public class MeasureTypeApiImpl implements IMeasureTypeApi {
