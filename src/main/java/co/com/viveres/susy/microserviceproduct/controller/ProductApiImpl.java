@@ -15,7 +15,6 @@ import co.com.viveres.susy.microservicecommons.dto.StockDto;
 import co.com.viveres.susy.microserviceproduct.api.IProductApi;
 import co.com.viveres.susy.microserviceproduct.service.IProductService;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/v1/products")
 public class ProductApiImpl implements IProductApi {

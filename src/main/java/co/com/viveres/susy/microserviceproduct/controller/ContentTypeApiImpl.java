@@ -16,7 +16,6 @@ import co.com.viveres.susy.microservicecommons.dto.ContentDto;
 import co.com.viveres.susy.microserviceproduct.api.IContentTypeApi;
 import co.com.viveres.susy.microserviceproduct.service.IContentTypeService;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/v1/content-type")
 public class ContentTypeApiImpl implements IContentTypeApi {
