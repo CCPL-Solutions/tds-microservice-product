@@ -1,11 +1,13 @@
 package co.com.viveres.susy.microserviceproduct.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import co.com.viveres.susy.microservicecommons.dto.BrandDto;
@@ -115,18 +117,24 @@ public class ProductServiceImpl implements IProductService {
 	}
 
 	@Override
-	public List<ProductDto> findAll() {			
-		List<ProductEntity> productEntityList = this.productRepository.findAll();
-		return this.mapOutListProductEntityToDto(productEntityList);
+	public Page<ProductDto> findAll(int page, int size, String sort, String productName, String productBran) {
+		Pageable pageable = PageRequest.of(page, size, Sort.by(sort));
+		Page<ProductEntity> productEntityPage = null;
+		
+		if (productName != null) {
+			productEntityPage = this.productRepository.findByNameContaining(productName, pageable);
+		}else if(productBran != null) {
+			productEntityPage = this.productRepository.findByBrandNameContaining(productBran, pageable);
+		}
+		else {
+			productEntityPage = this.productRepository.findAll(pageable);
+		}
+				
+		return this.mapOutListProductEntityToDto(productEntityPage);
 	}
 
-	private List<ProductDto> mapOutListProductEntityToDto(List<ProductEntity> productEntityList) {
-		List<ProductDto> productDtoList = new ArrayList<>();
-		productEntityList.forEach(productEntity -> {
-			ProductDto productDto = this.mapOutProductEntityToDto(productEntity);
-			productDtoList.add(productDto);
-		});
-		return productDtoList;
+	private Page<ProductDto> mapOutListProductEntityToDto(Page<ProductEntity> productEntityPage) {					
+		return productEntityPage.map(this::mapOutProductEntityToDto);
 	}
 
 	@Override
