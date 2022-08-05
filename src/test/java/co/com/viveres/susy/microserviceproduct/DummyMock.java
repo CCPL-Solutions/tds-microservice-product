@@ -1,44 +1,156 @@
 package co.com.viveres.susy.microserviceproduct;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import co.com.viveres.susy.microservicecommons.dto.BrandDto;
-import co.com.viveres.susy.microservicecommons.dto.ContentDto;
-import co.com.viveres.susy.microservicecommons.dto.MeasureTypeDto;
-import co.com.viveres.susy.microservicecommons.dto.ProductDto;
-import co.com.viveres.susy.microservicecommons.dto.StockDto;
-import co.com.viveres.susy.microservicecommons.entity.MessageEntity;
+import co.com.viveres.susy.microservicecommons.dto.*;
 import co.com.viveres.susy.microserviceproduct.entity.BrandEntity;
 import co.com.viveres.susy.microserviceproduct.entity.ContentEntity;
 import co.com.viveres.susy.microserviceproduct.entity.MeasureTypeEntity;
 import co.com.viveres.susy.microserviceproduct.entity.ProductEntity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
 public class DummyMock {
-	
-	public static Optional<BrandEntity> brandEntity() {		
+
+	//DummyMock MeasureTypeEntity
+
+	public static MeasureTypeEntity measureTypeOut() {
+		return MeasureTypeEntity.builder()
+				.id(1L)
+				.name("gramos")
+				.build();
+	}
+
+	public static MeasureTypeDto measureTypeDtoIn() {
+		return MeasureTypeDto.builder()
+				.id(1L)
+				.name("gramos")
+				.build();
+	}
+
+	public static List<MeasureTypeEntity> measureEntityList() {
+		MeasureTypeEntity measureTypeEntity1 = MeasureTypeEntity
+				.builder().id(1L).name("gramos").build();
+
+		MeasureTypeEntity measureTypeEntity2 = MeasureTypeEntity
+				.builder().id(2L).name("kilogramos").build();
+
+		MeasureTypeEntity measureTypeEntity3 = MeasureTypeEntity
+				.builder().id(3L).name("litros").build();
+
+		return Arrays.asList(measureTypeEntity1, measureTypeEntity2, measureTypeEntity3);
+	}
+
+	public static List<MeasureTypeDto> measureDtoListOut() {
+		MeasureTypeDto measureTypeDto1 = MeasureTypeDto
+				.builder().id(1L).name("gramos").build();
+
+		MeasureTypeDto measureTypeDto2 = MeasureTypeDto
+				.builder().id(2L).name("kilogramos").build();
+
+		MeasureTypeDto measureTypeDto3 = MeasureTypeDto
+				.builder().id(3L).name("litros").build();
+
+		return Arrays.asList(measureTypeDto1, measureTypeDto2, measureTypeDto3);
+	}
+
+	//DummyMock BrandEntity
+
+	public static BrandDto brandDtoIn() {
+		BrandDto brand = new BrandDto();
+		brand.setName("Diana");
+		return brand;
+	}
+
+	public static BrandEntity brandEntityCreated() {
 		BrandEntity brand = new BrandEntity();
 		brand.setId(1L);
 		brand.setName("Diana");
-		return Optional.of(brand);
+		return brand;
 	}
-	
+
+	public static List<BrandEntity> brandEntityList() {
+		BrandEntity brand = new BrandEntity();
+		brand.setId(1L);
+		brand.setName("Diana");
+
+		BrandEntity brand2 = new BrandEntity();
+		brand2.setId(2L);
+		brand2.setName("Riopaila");
+
+		BrandEntity brand3 = new BrandEntity();
+		brand3.setId(3L);
+		brand3.setName("Refisal");
+
+		return Arrays.asList(brand, brand2, brand3);
+	}
+
+	public static List<BrandDto> brandDtoList() {
+		BrandDto brand = new BrandDto();
+		brand.setId(1L);
+		brand.setName("Diana");
+
+		BrandDto brand2 = new BrandDto();
+		brand2.setId(2L);
+		brand2.setName("Riopaila");
+
+		BrandDto brand3 = new BrandDto();
+		brand3.setId(3L);
+		brand3.setName("Refisal");
+
+		return Arrays.asList(brand, brand2, brand3);
+	}
+
+	//DummyMock Content
+
 	public static Optional<ContentEntity> contentEntity() {		
 		ContentEntity content = new ContentEntity();
 		content.setId(1L);
-		content.setMeasureType(measureType());
+		content.setMeasureType(measureTypeOut());
 		content.setValue(500d);
 		return Optional.of(content);
 	}
-	
-	public static MeasureTypeEntity measureType() {
-		MeasureTypeEntity measureType = new MeasureTypeEntity();
-		measureType.setId(1L);
-		measureType.setName("gramos");
-		return measureType;
+
+	public static List<ContentEntity> contentEntityList() {
+
+		ContentEntity content = new ContentEntity();
+		content.setId(1L);
+		content.setMeasureType(measureTypeOut());
+		content.setValue(500d);
+
+		ContentEntity content2 = new ContentEntity();
+		content2.setId(2L);
+		content2.setMeasureType(measureTypeOut());
+		content2.setValue(750d);
+
+		ContentEntity content3 = new ContentEntity();
+		content3.setId(3L);
+		content3.setMeasureType(measureTypeOut());
+		content.setValue(1000d);
+
+		return Arrays.asList(content, content2, content3);
 	}
 	
+	public static ContentDto contentInputDto() {
+		ContentDto contentInputDto = new ContentDto();
+		contentInputDto.setMeasure(measureTypeDtoIn());
+		contentInputDto.setValue(500d);
+		return contentInputDto;
+	}
+
+	public static ContentDto contentOutputDto() {
+		ContentDto content = new ContentDto();
+		content.setId(1L);
+		content.setMeasure(new MeasureTypeDto());
+		content.getMeasure().setId(1L);
+		content.getMeasure().setName("gramos");
+		content.setValue(500d);
+		return content;
+	}
+
+	// DummyMock Products
+
 	public static Optional<ProductEntity> productEntity(){
 		ProductEntity productEntity =new ProductEntity();
 		productEntity.setId(1L);
@@ -53,7 +165,7 @@ public class DummyMock {
 		productEntity.setDescription("Arroz Diana x 500 gramos");
 		return Optional.of(productEntity);
 	}
-	
+
 	public static ProductEntity productEntityTwo(){
 		ProductEntity product = new ProductEntity();
 		product.setName("Gaseosa");
@@ -67,20 +179,6 @@ public class DummyMock {
 		product.setContent(new ContentEntity());
 		product.getContent().setId(2L);
 		return product;
-	}
-	
-	public static Optional<MessageEntity> message(String code, String description, String codeMessage) {
-		MessageEntity message = new MessageEntity();
-		message.setCode(code);
-		message.setDescripction(description);
-		message.setCodeMessage(codeMessage);
-		return Optional.of(message);	
-	}
-	
-	public static ContentDto contentInputDto() {
-		ContentDto contentInputDto = new ContentDto();
-		contentInputDto.setId(1L);
-		return contentInputDto;
 	}
 	
 	public static ProductDto productInputDto(){
@@ -109,16 +207,6 @@ public class DummyMock {
 		product.setDescription("Arroz Diana x 500 gramos");
 		product.setContent(contentInputDto());
 		return product;
-	}
-	
-	public static ContentDto contentOutputDto() {
-		ContentDto content = new ContentDto();
-		content.setId(1L);
-		content.setMeasure(new MeasureTypeDto());
-		content.getMeasure().setId(1L);
-		content.getMeasure().setName("gramos");
-		content.setValue(500d);
-		return content;
 	}
 	
 	public static ProductDto productOutputDto(){
@@ -231,62 +319,6 @@ public class DummyMock {
 		stockDto.setType(type);
 		stockDto.setNumberItems(2);
 		return stockDto;		
-	}
-	
-	public static List<ContentEntity> contentEntityList() {
-		List<ContentEntity> contentEntityList = new ArrayList<>();
-		
-		ContentEntity content = new ContentEntity();
-		content.setId(1L);
-		content.setMeasureType(measureType());
-		content.setValue(500d);
-		
-		ContentEntity content2 = new ContentEntity();
-		content2.setId(2L);
-		content2.setMeasureType(measureType());
-		content2.setValue(750d);
-		
-		ContentEntity content3 = new ContentEntity();
-		content3.setId(3L);
-		content3.setMeasureType(measureType());
-		content.setValue(1000d);
-		
-		contentEntityList.add(content);
-		contentEntityList.add(content2);
-		contentEntityList.add(content3);
-		
-		return contentEntityList;
-	}
-	
-	public static List<ContentDto> contentOutputDtoList() {
-		List<ContentDto> ContentOutputDtoList = new ArrayList<>();
-		
-		ContentDto content = new ContentDto();
-		content.setId(1L);
-		content.setMeasure(new MeasureTypeDto());
-		content.getMeasure().setId(1L);
-		content.getMeasure().setName("gramos");
-		content.setValue(500d);
-		
-		ContentDto content2 = new ContentDto();
-		content2.setId(2L);
-		content.setMeasure(new MeasureTypeDto());
-		content.getMeasure().setId(1L);
-		content.getMeasure().setName("gramos");
-		content2.setValue(750d);
-		
-		ContentDto content3 = new ContentDto();
-		content3.setId(3L);
-		content.setMeasure(new MeasureTypeDto());
-		content.getMeasure().setId(1L);
-		content.getMeasure().setName("gramos");
-		content.setValue(1000d);
-		
-		ContentOutputDtoList.add(content);
-		ContentOutputDtoList.add(content2);
-		ContentOutputDtoList.add(content3);
-		
-		return ContentOutputDtoList;
 	}
 
 }

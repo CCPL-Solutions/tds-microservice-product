@@ -4,7 +4,6 @@ import org.springframework.data.domain.Page;
 
 import co.com.viveres.susy.microservicecommons.dto.ProductDto;
 import co.com.viveres.susy.microservicecommons.dto.StockDto;
-import co.com.viveres.susy.microservicecommons.exception.GenericException;
 
 public interface IProductService {
 
@@ -17,7 +16,5 @@ public interface IProductService {
 	void update(Long id, ProductDto request);
 
 	void stockManagementByProduct(Long productId, StockDto movement);
-	
-	GenericException setGenericException(String responseMessage, String value);
 
 }
