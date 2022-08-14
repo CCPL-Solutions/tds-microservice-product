@@ -3,11 +3,11 @@ package co.com.viveres.susy.microserviceproduct.service.impl;
 import co.com.viveres.susy.microservicecommons.dto.BrandDto;
 import co.com.viveres.susy.microservicecommons.exception.BusinessException;
 import co.com.viveres.susy.microservicecommons.exception.NotFoundException;
+import co.com.viveres.susy.microservicecommons.util.ResponseMessages;
 import co.com.viveres.susy.microserviceproduct.entity.BrandEntity;
 import co.com.viveres.susy.microserviceproduct.repository.IBrandRepository;
 import co.com.viveres.susy.microserviceproduct.service.IBrandService;
 import co.com.viveres.susy.microserviceproduct.service.mapper.IMapper;
-import co.com.viveres.susy.microserviceproduct.util.ResponseMessages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +33,7 @@ public class BrandServiceImpl implements IBrandService {
 
 	private void validateBrandtAlreadyExist(BrandDto brand) {
 		Optional<BrandEntity> brandEntity = this.repository.findByName(brand.getName());
-		if (!brandEntity.isEmpty()) {
+		if (brandEntity.isPresent()) {
 			throw new BusinessException(ResponseMessages.BRAND_ALREADY_EXISTS);
 		}
 	}

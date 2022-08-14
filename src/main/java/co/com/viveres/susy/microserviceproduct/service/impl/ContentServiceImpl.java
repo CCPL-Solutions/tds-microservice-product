@@ -3,13 +3,13 @@ package co.com.viveres.susy.microserviceproduct.service.impl;
 import co.com.viveres.susy.microservicecommons.dto.ContentDto;
 import co.com.viveres.susy.microservicecommons.exception.BusinessException;
 import co.com.viveres.susy.microservicecommons.exception.NotFoundException;
+import co.com.viveres.susy.microservicecommons.util.ResponseMessages;
 import co.com.viveres.susy.microserviceproduct.entity.ContentEntity;
 import co.com.viveres.susy.microserviceproduct.entity.MeasureTypeEntity;
 import co.com.viveres.susy.microserviceproduct.repository.IContentRepository;
 import co.com.viveres.susy.microserviceproduct.service.IContentService;
 import co.com.viveres.susy.microserviceproduct.service.IMeasureTypeService;
 import co.com.viveres.susy.microserviceproduct.service.mapper.IMapper;
-import co.com.viveres.susy.microserviceproduct.util.ResponseMessages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

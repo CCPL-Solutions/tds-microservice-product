@@ -5,6 +5,8 @@ import co.com.viveres.susy.microserviceproduct.entity.BrandEntity;
 import co.com.viveres.susy.microserviceproduct.entity.ContentEntity;
 import co.com.viveres.susy.microserviceproduct.entity.MeasureTypeEntity;
 import co.com.viveres.susy.microserviceproduct.entity.ProductEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -134,6 +136,7 @@ public class DummyMock {
 	
 	public static ContentDto contentInputDto() {
 		ContentDto contentInputDto = new ContentDto();
+		contentInputDto.setId(1L);
 		contentInputDto.setMeasure(measureTypeDtoIn());
 		contentInputDto.setValue(500d);
 		return contentInputDto;
@@ -176,7 +179,7 @@ public class DummyMock {
 		product.setPrice(3600d);
 		product.setCurrentNumItems(6);
 		product.setMinimunStock(3);
-		product.setContent(new ContentEntity());
+		product.setContent(contentEntity().orElseThrow());
 		product.getContent().setId(2L);
 		return product;
 	}
@@ -222,6 +225,10 @@ public class DummyMock {
 		product.setDescription("Arroz Diana x 500 gramos");
 		product.setContent(contentOutputDto());
 		return product;
+	}
+
+	public static Page<ProductEntity> getProductEntityPage(){
+		return new PageImpl<>(productEntityList());
 	}
 	
 	public static List<ProductEntity> productEntityList(){

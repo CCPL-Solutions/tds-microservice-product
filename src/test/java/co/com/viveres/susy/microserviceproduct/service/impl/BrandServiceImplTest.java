@@ -2,15 +2,19 @@ package co.com.viveres.susy.microserviceproduct.service.impl;
 
 import co.com.viveres.susy.microservicecommons.dto.BrandDto;
 import co.com.viveres.susy.microservicecommons.exception.BusinessException;
+import co.com.viveres.susy.microservicecommons.util.ResponseMessages;
 import co.com.viveres.susy.microserviceproduct.DummyMock;
 import co.com.viveres.susy.microserviceproduct.entity.BrandEntity;
 import co.com.viveres.susy.microserviceproduct.repository.IBrandRepository;
 import co.com.viveres.susy.microserviceproduct.service.mapper.impl.MapperImpl;
-import co.com.viveres.susy.microserviceproduct.util.ResponseMessages;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.*;
+import org.mockito.ArgumentMatchers;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;

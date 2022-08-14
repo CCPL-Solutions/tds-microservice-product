@@ -2,6 +2,9 @@ package co.com.viveres.susy.microserviceproduct.service.impl;
 
 import co.com.viveres.susy.microservicecommons.dto.ProductDto;
 import co.com.viveres.susy.microservicecommons.dto.StockDto;
+import co.com.viveres.susy.microservicecommons.exception.BusinessException;
+import co.com.viveres.susy.microservicecommons.exception.NotFoundException;
+import co.com.viveres.susy.microservicecommons.util.ResponseMessages;
 import co.com.viveres.susy.microserviceproduct.entity.BrandEntity;
 import co.com.viveres.susy.microserviceproduct.entity.ContentEntity;
 import co.com.viveres.susy.microserviceproduct.entity.ProductEntity;
@@ -10,7 +13,6 @@ import co.com.viveres.susy.microserviceproduct.service.IBrandService;
 import co.com.viveres.susy.microserviceproduct.service.IContentService;
 import co.com.viveres.susy.microserviceproduct.service.IProductService;
 import co.com.viveres.susy.microserviceproduct.service.mapper.IMapper;
-import co.com.viveres.susy.microserviceproduct.util.ResponseMessages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -53,7 +55,7 @@ public class ProductServiceImpl implements IProductService {
 				brandEntity, contentEntity);
 
 		if (productEntity.isPresent())
-			throw new IllegalArgumentException(ResponseMessages.PRODUCT_ALREADY_EXISTS);
+			throw new BusinessException(ResponseMessages.PRODUCT_ALREADY_EXISTS);
 					
 	}
 
@@ -90,7 +92,7 @@ public class ProductServiceImpl implements IProductService {
 
 	private ProductEntity findProductById(Long id) {
 		return this.productRepository.findById(id).orElseThrow(
-				() -> new IllegalArgumentException(ResponseMessages.PRODUCT_DOES_NOT_EXIST));
+				() -> new NotFoundException(ResponseMessages.PRODUCT_DOES_NOT_EXIST));
 	}
 
 	@Override
