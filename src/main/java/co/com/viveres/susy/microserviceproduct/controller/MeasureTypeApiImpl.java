@@ -1,4 +1,4 @@
-package co.com.viveres.susy.microserviceproduct.config.controller;
+package co.com.viveres.susy.microserviceproduct.controller;
 
 import java.net.URI;
 import java.util.List;

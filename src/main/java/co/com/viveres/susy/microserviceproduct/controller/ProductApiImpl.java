@@ -1,4 +1,4 @@
-package co.com.viveres.susy.microserviceproduct.config.controller;
+package co.com.viveres.susy.microserviceproduct.controller;
 
 import co.com.viveres.susy.microservicecommons.dto.ProductDto;
 import co.com.viveres.susy.microservicecommons.dto.StockDto;

@@ -1,7 +1,6 @@
 package co.com.viveres.susy.microserviceproduct.controller;
 
 import co.com.viveres.susy.microservicecommons.dto.ProductDto;
-import co.com.viveres.susy.microserviceproduct.config.controller.ProductApiImpl;
 import co.com.viveres.susy.microserviceproduct.repository.IBrandRepository;
 import co.com.viveres.susy.microserviceproduct.repository.IContentRepository;
 import co.com.viveres.susy.microserviceproduct.repository.IMeasureTypeRepository;
