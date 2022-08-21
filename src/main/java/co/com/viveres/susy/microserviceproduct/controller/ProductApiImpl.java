@@ -1,19 +1,17 @@
 package co.com.viveres.susy.microserviceproduct.controller;
 
-import java.net.URI;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import co.com.viveres.susy.microservicecommons.dto.ProductDto;
 import co.com.viveres.susy.microservicecommons.dto.StockDto;
 import co.com.viveres.susy.microserviceproduct.api.IProductApi;
 import co.com.viveres.susy.microserviceproduct.service.IProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/v1/products")
@@ -29,8 +27,8 @@ public class ProductApiImpl implements IProductApi {
     }
     
 	@Override
-	public ResponseEntity<List<ProductDto>> findAll() {
-		List<ProductDto> response = service.findAll();
+	public ResponseEntity<Page<ProductDto>> findAll(int page, int size, String sort, String productName, String productBrand) {
+		Page<ProductDto> response = service.findAll(page, size, sort, productName, productBrand);
         return ResponseEntity.ok(response);
 	}
 

@@ -7,21 +7,20 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import co.com.viveres.susy.microservicecommons.dto.ContentDto;
 import co.com.viveres.susy.microserviceproduct.api.IContentTypeApi;
-import co.com.viveres.susy.microserviceproduct.service.IContentTypeService;
+import co.com.viveres.susy.microserviceproduct.service.IContentService;
 
 @RestController
 @RequestMapping("/v1/content-type")
 public class ContentTypeApiImpl implements IContentTypeApi {
 
 	@Autowired
-	private IContentTypeService service;
+	private IContentService service;
 
 	@Override
 	public ResponseEntity<List<ContentDto>> findAllContent() {

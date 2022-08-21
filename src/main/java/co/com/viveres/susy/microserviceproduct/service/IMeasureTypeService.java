@@ -14,7 +14,7 @@ public interface IMeasureTypeService {
 	MeasureTypeDto findById(Long measureId);
 	
 	void update(Long measureId, MeasureTypeDto measureTypeDto);
-	
+
 	MeasureTypeEntity findMeasureTypeEntityById(Long measureId);
 
 }

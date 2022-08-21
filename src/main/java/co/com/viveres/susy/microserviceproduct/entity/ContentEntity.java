@@ -1,5 +1,11 @@
 package co.com.viveres.susy.microserviceproduct.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,10 +16,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import lombok.Data;
-
-@Data
+@AllArgsConstructor
+@Builder
 @Entity
+@Getter
+@NoArgsConstructor
+@Setter
 @Table(name = "CONTENT")
 public class ContentEntity{
 
