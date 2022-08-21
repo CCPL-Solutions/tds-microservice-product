@@ -275,6 +275,10 @@ public class DummyMock {
 		
 		return productEntityList;
 	}
+
+	public static Page<ProductDto> getProductDtoPage(){
+		return new PageImpl<>(productOutputDtoList());
+	}
 	
 	public static List<ProductDto> productOutputDtoList(){
 		List<ProductDto> productOutputDtoList = new ArrayList<>();
