@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -24,7 +23,7 @@ public class BrandApiImpl implements IBrandApi {
 	@Override
 	public ResponseEntity<BrandDto> create(BrandDto brand) {
 		BrandDto response = this.service.create(brand);
-		return this.buildCreatResponse(response);
+		return this.buildCreateResponse(response);
 	}
 
 	@Override
@@ -51,7 +50,7 @@ public class BrandApiImpl implements IBrandApi {
 		return ResponseEntity.ok().build();
 	}
 
-	private ResponseEntity<BrandDto> buildCreatResponse(
+	private ResponseEntity<BrandDto> buildCreateResponse(
 			BrandDto response) {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{brand-id}")

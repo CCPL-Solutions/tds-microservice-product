@@ -61,6 +61,7 @@ public class DummyMock {
 
 	public static BrandDto brandDtoIn() {
 		BrandDto brand = new BrandDto();
+		brand.setId(1L);
 		brand.setName("Diana");
 		return brand;
 	}
