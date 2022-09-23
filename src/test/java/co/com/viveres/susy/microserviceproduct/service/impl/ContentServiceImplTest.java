@@ -119,7 +119,7 @@ class ContentServiceImplTest {
     }
 
     @Test
-    void findByIdNotFoundExceptionTest() { 
+    void findByIdNotFoundExceptionTest() {
         // Given
         Long contentId = 1L;
         Optional<ContentEntity> contentEntity = Optional.empty();
