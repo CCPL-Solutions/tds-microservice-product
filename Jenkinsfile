@@ -1,5 +1,7 @@
 pipeline{
-    agent any
+    agent {
+        label 'node-awsec2-docker'
+    }
     environment {
         gitcommit = "${gitcommit}"
     }
@@ -26,9 +28,6 @@ pipeline{
             }
         }
         stage('Docker Build & Push') {
-            agent {
-                label 'node-awsec2-docker'
-            }
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
