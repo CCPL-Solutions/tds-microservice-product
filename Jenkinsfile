@@ -19,12 +19,16 @@ pipeline{
         }
         stage("Build"){
             steps{
-                sh 'mvn -B -DskipTests clean package'
+                configFileProvider([configFile(fileId: '9a904863-5c8a-4a8f-a39a-fdb501efe48c', variable: 'MAVEN_SETTINGS_XML')]) {
+                    sh 'mvn -s $MAVEN_SETTINGS_XML -DskipTests clean package'
+                }
             }
         }
         stage("Test"){
             steps{
-                sh 'mvn test'
+                configFileProvider([configFile(fileId: '9a904863-5c8a-4a8f-a39a-fdb501efe48c', variable: 'MAVEN_SETTINGS_XML')]) {
+                    sh 'mvn -s $MAVEN_SETTINGS_XML test'
+                }
             }
         }
         stage('Docker Build & Push') {
