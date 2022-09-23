@@ -2,6 +2,7 @@ package co.com.viveres.susy.microserviceproduct.service.impl;
 
 import co.com.viveres.susy.microservicecommons.dto.BrandDto;
 import co.com.viveres.susy.microservicecommons.exception.BusinessException;
+import co.com.viveres.susy.microservicecommons.exception.NotFoundException;
 import co.com.viveres.susy.microservicecommons.util.ResponseMessages;
 import co.com.viveres.susy.microserviceproduct.DummyMock;
 import co.com.viveres.susy.microserviceproduct.entity.BrandEntity;
@@ -98,6 +99,20 @@ class BrandServiceImplTest {
         Assertions.assertNotNull(brandDtoActual);
         Assertions.assertEquals(1L, brandDtoActual.getId());
         Assertions.assertEquals("Diana", brandDtoActual.getName());
+    }
+
+    @Test
+    void findByIdNotFoundExceptionTest() {
+        // Given
+        BrandEntity brandEntity = DummyMock.brandEntityCreated();
+        Long brandId = 1L;
+        // When
+        Mockito.when(this.repository.findById(ArgumentMatchers.anyLong())).thenReturn(Optional.empty());
+        NotFoundException exception = assertThrows(NotFoundException.class, () -> this.service.findById(brandId));
+        // Then
+        Mockito.verify(this.repository).findById(ArgumentMatchers.anyLong());
+        Assertions.assertNotNull(exception);
+        Assertions.assertEquals(ResponseMessages.BRAND_DOES_NOT_EXIST, exception.getMessage());
     }
 
     @Test
