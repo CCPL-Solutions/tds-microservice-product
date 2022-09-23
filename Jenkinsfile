@@ -11,7 +11,7 @@ pipeline {
   stages {
     stage('Verificación SCM') {
       when {
-        expression { return params.current_status == "closed" && params.merged == true }
+        expression { return env.current_status == "closed" && env.merged == true }
       }
       steps {
         script {
@@ -22,7 +22,7 @@ pipeline {
     }
     stage("Build") {
       when {
-        expression { return params.current_status == "closed" && params.merged == true }
+        expression { return env.current_status == "closed" && env.merged == true }
       }
       steps {
         configFileProvider([configFile(fileId: '9a904863-5c8a-4a8f-a39a-fdb501efe48c', variable: 'MAVEN_SETTINGS_XML')]) {
@@ -32,7 +32,7 @@ pipeline {
     }
     stage("Test") {
       when {
-        expression { return params.current_status == "closed" && params.merged == true }
+        expression { return env.current_status == "closed" && env.merged == true }
       }
       steps {
         configFileProvider([configFile(fileId: '9a904863-5c8a-4a8f-a39a-fdb501efe48c', variable: 'MAVEN_SETTINGS_XML')]) {
@@ -42,7 +42,7 @@ pipeline {
     }
     stage('Docker Build & Push') {
       when {
-        expression { return params.current_status == "closed" && params.merged == true }
+        expression { return env.current_status == "closed" && env.merged == true }
       }
       steps {
         script {
