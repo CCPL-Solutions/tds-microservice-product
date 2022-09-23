@@ -10,9 +10,6 @@ pipeline {
   }
   stages {
     stage('Verificación SCM') {
-      when {
-        expression { return env.current_status == "closed" && env.merged == true }
-      }
       steps {
         script {
           sh "git rev-parse --short HEAD > .git/commit-id"
@@ -21,9 +18,6 @@ pipeline {
       }
     }
     stage("Build") {
-      when {
-        expression { return env.current_status == "closed" && env.merged == true }
-      }
       steps {
         configFileProvider([configFile(fileId: '9a904863-5c8a-4a8f-a39a-fdb501efe48c', variable: 'MAVEN_SETTINGS_XML')]) {
           sh 'mvn -s $MAVEN_SETTINGS_XML -DskipTests clean package'
@@ -31,9 +25,6 @@ pipeline {
       }
     }
     stage("Test") {
-      when {
-        expression { return env.current_status == "closed" && env.merged == true }
-      }
       steps {
         configFileProvider([configFile(fileId: '9a904863-5c8a-4a8f-a39a-fdb501efe48c', variable: 'MAVEN_SETTINGS_XML')]) {
           sh 'mvn -s $MAVEN_SETTINGS_XML test'
@@ -41,9 +32,6 @@ pipeline {
       }
     }
     stage('Docker Build & Push') {
-      when {
-        expression { return env.current_status == "closed" && env.merged == true }
-      }
       steps {
         script {
           docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {

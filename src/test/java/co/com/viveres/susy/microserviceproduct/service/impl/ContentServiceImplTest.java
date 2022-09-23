@@ -50,7 +50,7 @@ class ContentServiceImplTest {
     private ContentServiceImpl service;
 
     @Test
-    void createOk() {
+    void createOkTest() {
         // Given
         MeasureTypeEntity measureTypeEntity = measureTypeOut();
         Optional<ContentEntity> empty = Optional.empty();
@@ -73,7 +73,7 @@ class ContentServiceImplTest {
     }
 
     @Test
-    void createAlreadyExist() {
+    void createAlreadyExistTest() {
         // Given
         MeasureTypeEntity measureTypeEntity = measureTypeOut();
         Optional<ContentEntity> contentEntity = contentEntity();
@@ -90,7 +90,7 @@ class ContentServiceImplTest {
     }
 
     @Test
-    void findAllContent() {
+    void findAllContentTest() {
         // Given
         List<ContentEntity> contentEntityList = contentEntityList();
         // When
@@ -102,7 +102,7 @@ class ContentServiceImplTest {
     }
 
     @Test
-    void findById() {
+    void findByIdTest() {
         // Given
         Optional<ContentEntity> contentEntity = contentEntity();
         Long contentId = 1L;
@@ -119,7 +119,7 @@ class ContentServiceImplTest {
     }
 
     @Test
-    void findByIdNotFoundException() {
+    void findByIdNotFoundExceptionTest() {
         // Given
         Long contentId = 1L;
         Optional<ContentEntity> contentEntity = Optional.empty();
@@ -133,14 +133,14 @@ class ContentServiceImplTest {
     }
 
     @Test
-    void update() {
+    void updateTest() {
         // Given
         // When
         // Then
     }
 
     @Test
-    void delete() {
+    void deleteTest() {
         // Given
         // When
         // Then
