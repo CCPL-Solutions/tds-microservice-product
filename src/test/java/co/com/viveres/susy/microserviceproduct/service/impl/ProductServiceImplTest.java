@@ -200,10 +200,24 @@ class ProductServiceImplTest {
     }
 
     @Test
-    void stockManagementByProduct() {
+    void stockManagementByProductRemoveTest() {
         // Given
         Long productId = 1L;
         StockDto movement = stockDto("remove");
+        ProductEntity productEntity = productEntityTwo();
+        // When
+        when( this.productRepository.findById(anyLong())).thenReturn(Optional.of(productEntity));
+        this.service.stockManagementByProduct(productId, movement);
+        // Then
+        verify( this.productRepository).findById(anyLong());
+        verify(this.productRepository).save(any(ProductEntity.class));
+    }
+
+    @Test
+    void stockManagementByProductAddTest() {
+        // Given
+        Long productId = 1L;
+        StockDto movement = stockDto("add");
         ProductEntity productEntity = productEntityTwo();
         // When
         when( this.productRepository.findById(anyLong())).thenReturn(Optional.of(productEntity));
