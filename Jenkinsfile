@@ -9,7 +9,7 @@ pipeline {
     maven 'maven-jenkins'
   }
   stages {
-    stage('Verificación SCM') {
+    stage('VerificationSCM') {
       steps {
         script {
           sh "git rev-parse --short HEAD > .git/commit-id"
@@ -29,6 +29,11 @@ pipeline {
         configFileProvider([configFile(fileId: '9a904863-5c8a-4a8f-a39a-fdb501efe48c', variable: 'MAVEN_SETTINGS_XML')]) {
           sh 'mvn -s $MAVEN_SETTINGS_XML test'
         }
+      }
+    }
+    stage('Scan'){
+      withSonarQubeEnv(installationName: 'SonarQubeServer') {
+        sh 'mvn clean sonar:sonar'
       }
     }
     stage('Docker Build & Push') {
