@@ -32,8 +32,10 @@ pipeline {
       }
     }
     stage('Scan'){
-      withSonarQubeEnv(installationName: 'SonarQubeServer') {
-        sh 'mvn clean sonar:sonar'
+      steps{
+        withSonarQubeEnv(installationName: 'SonarQubeServer') {
+          sh 'mvn clean sonar:sonar'
+        }
       }
     }
     stage('Docker Build & Push') {
