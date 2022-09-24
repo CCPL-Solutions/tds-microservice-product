@@ -112,7 +112,7 @@ class BrandServiceImplTest {
         // Then
         Mockito.verify(this.repository).findById(ArgumentMatchers.anyLong());
         Assertions.assertNotNull(exception);
-        Assertions.assertEquals(ResponseMessages.BRAND_DOES_NOT_EXIST, exception.getMessage());
+        Assertions.assertEquals(ResponseMessages.BRAND_DOES_NOT_EXIST + "d", exception.getMessage());
     }
 
     @Test
