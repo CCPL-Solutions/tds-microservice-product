@@ -23,15 +23,11 @@ pipeline {
         }
       }
     }
-    stage('Scan'){
+    stage('Scan & Quality Gate'){
       steps{
         withSonarQubeEnv(installationName: 'SonarQubeServer') {
           sh 'mvn clean package sonar:sonar'
         }
-      }
-    }
-    stage("Quality Gate") {
-      steps {
         timeout(time: 6, unit: 'MINUTES') {
           waitForQualityGate abortPipeline: true
         }
