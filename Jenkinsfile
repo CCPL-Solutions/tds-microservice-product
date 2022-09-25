@@ -9,6 +9,14 @@ pipeline {
     maven 'maven-jenkins'
   }
   stages {
+    stage('VerificationSCM') {
+      steps {
+        script {
+          sh "git rev-parse --short HEAD > .git/commit-id"
+          gitcommit = readFile('.git/commit-id').trim()
+        }
+      }
+    }
     stage("Build") {
       steps {
         configFileProvider([configFile(fileId: '9a904863-5c8a-4a8f-a39a-fdb501efe48c', variable: 'MAVEN_SETTINGS_XML')]) {
@@ -23,11 +31,15 @@ pipeline {
         }
       }
     }
-    stage('Scan & Quality Gate'){
+    stage('Scan'){
       steps{
         withSonarQubeEnv(installationName: 'SonarQubeServer') {
           sh 'mvn clean package sonar:sonar'
         }
+      }
+    }
+    stage("Quality Gate") {
+      steps {
         timeout(time: 6, unit: 'MINUTES') {
           waitForQualityGate abortPipeline: true
         }
@@ -35,10 +47,6 @@ pipeline {
     }
     stage('Docker Build & Push') {
       steps {
-        script {
-          sh "git rev-parse --short HEAD > .git/commit-id"
-          gitcommit = readFile('.git/commit-id').trim()
-        }
         script {
           docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
             def image = docker.build("plchavez98/tds-microservice-products:${gitcommit}", ".")
