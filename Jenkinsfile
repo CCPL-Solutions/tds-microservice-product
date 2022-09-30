@@ -28,7 +28,7 @@ pipeline {
         withSonarQubeEnv(installationName: 'SonarQubeServer') {
           sh 'mvn clean package sonar:sonar'
         }
-        timeout(time: 6, unit: 'MINUTES') {
+        timeout(time: 2, unit: 'MINUTES') {
           waitForQualityGate abortPipeline: true
         }
       }
