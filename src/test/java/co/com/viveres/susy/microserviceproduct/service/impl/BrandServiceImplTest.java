@@ -36,7 +36,7 @@ class BrandServiceImplTest {
     private BrandServiceImpl service;
 
     @Test
-    void create() {
+    void createTest() {
         // Given
         BrandEntity brandEntity = DummyMock.brandEntityCreated();
         BrandDto brandDto = DummyMock.brandDtoIn();
@@ -53,7 +53,7 @@ class BrandServiceImplTest {
     }
 
     @Test
-    void createBusinessException() {
+    void createBusinessExceptionTest() {
         // Given
         BrandEntity brandEntity = DummyMock.brandEntityCreated();
         BrandDto brandDto = DummyMock.brandDtoIn();
@@ -67,7 +67,7 @@ class BrandServiceImplTest {
     }
 
     @Test
-    void findAllBrands() {
+    void findAllBrandsTest() {
         // Given
         List<BrandEntity> brandEntityList = DummyMock.brandEntityList();
         List<BrandDto> brandDtoListExpected = DummyMock.brandDtoList();
@@ -87,7 +87,7 @@ class BrandServiceImplTest {
     }
 
     @Test
-    void findById() {
+    void findByIdTest() {
         // Given
         BrandEntity brandEntity = DummyMock.brandEntityCreated();
         Long brandId = 1L;
@@ -102,7 +102,7 @@ class BrandServiceImplTest {
     }
 
     @Test
-    void findByIdNotFoundExceptionTest() {
+    void findByIdNotFoundExceptionTestTest() {
         // Given
         BrandEntity brandEntity = DummyMock.brandEntityCreated();
         Long brandId = 1L;
@@ -116,7 +116,7 @@ class BrandServiceImplTest {
     }
 
     @Test
-    void update() {
+    void updateTest() {
         // Given
         BrandEntity brandEntity = DummyMock.brandEntityCreated();
         BrandDto brandDto = DummyMock.brandDtoIn();
@@ -130,7 +130,7 @@ class BrandServiceImplTest {
     }
 
     @Test
-    void delete() {
+    void deleteTest() {
         // Given
         // When
         // Then
