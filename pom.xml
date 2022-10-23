@@ -132,6 +132,7 @@
                 <configuration>
                     <excludes>
                         <exclude>co/com/viveres/susy/microserviceproduct/entity/*</exclude>
+                        <exclude>co/com/viveres/susy/microserviceproduct/config/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

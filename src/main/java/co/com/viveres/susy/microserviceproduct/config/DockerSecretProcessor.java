@@ -1,5 +1,8 @@
 package co.com.viveres.susy.microserviceproduct.config;
 
+import org.apache.logging.log4j.LogManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.env.EnvironmentPostProcessor;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -17,12 +20,14 @@ import java.util.stream.Stream;
 
 public class DockerSecretProcessor implements EnvironmentPostProcessor {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(DockerSecretProcessor.class);
+
   @Override
   public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
 
     String bindPathPpty = environment.getProperty("docker-secret.bind-path");
 
-    System.out.println("value of \"docker-secret.bind-path\" property:" + bindPathPpty);
+    LOGGER.debug("value of \"docker-secret.bind-path\" property:" + bindPathPpty);
 
     if (bindPathPpty != null) {
       Path bindPath = Paths.get(bindPathPpty);
@@ -52,7 +57,7 @@ public class DockerSecretProcessor implements EnvironmentPostProcessor {
         dockerSecrets
             .entrySet()
             .forEach(entry -> {
-              System.out.println(entry.getKey() + "=\"" + entry.getValue() + "\"");
+              LOGGER.debug(entry.getKey() + "=\"" + entry.getValue() + "\"");
             });
 
         MapPropertySource pptySource = new MapPropertySource("docker-secrets", dockerSecrets);
