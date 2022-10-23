@@ -27,7 +27,7 @@ pipeline {
         }
       }
     }
-    stage("Scan & Quality Gate"){
+    /**stage("Scan & Quality Gate"){
       steps{
         withSonarQubeEnv(installationName: "SonarQubeServer") {
           sh "mvn clean package sonar:sonar"
@@ -36,7 +36,7 @@ pipeline {
           waitForQualityGate abortPipeline: true
         }
       }
-    }
+    }**/
     stage("Docker Build & Push") {
       when {
         branch "develop"
