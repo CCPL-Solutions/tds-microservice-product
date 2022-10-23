@@ -27,12 +27,14 @@ pipeline {
         }
       }
     }
-    stage("Scan & Quality Gate"){
+    stage("SonarQube Scan"){
       steps{
         withSonarQubeEnv(installationName: "SonarQubeServer") {
           sh "mvn clean package sonar:sonar"
         }
-        timeout(time: 2, unit: "MINUTES") {
+      }
+      stage("Quality Gate"){
+        timeout(time: 1, unit: 'HOURS') {
           def qg = waitForQualityGate()
           if (qg.status != 'OK') {
             error "Pipeline aborted due to quality gate failure: ${qg.status}"
