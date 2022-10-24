@@ -14,7 +14,7 @@ import java.util.Properties;
 
 class DockerSecretProcessorTest {
 
-  @Test
+  /**@Test
   void postProcessEnvironment() {
     DockerSecretProcessor dockerSecretProcessor = new DockerSecretProcessor();
     Properties properties = new Properties();
@@ -33,5 +33,5 @@ class DockerSecretProcessorTest {
     processor.postProcessEnvironment(environment, springApplication);
     context.close();
     return environment;
-  }
+  }**/
 }
