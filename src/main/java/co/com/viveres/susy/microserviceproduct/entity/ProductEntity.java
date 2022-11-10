@@ -22,12 +22,12 @@ import javax.persistence.Table;
 @Getter
 @NoArgsConstructor
 @Setter
-@Table(name = "PRODUCT")
-public class ProductEntity{
-    
-	@Id
-	@SequenceGenerator(name = "SEQ_PRODUCT_ID", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PRODUCT_ID")
+@Table(name = "\"PRODUCTS\"")
+public class ProductEntity {
+
+    @Id
+    @SequenceGenerator(name = "\"SEQ_PRODUCT_ID\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "\"SEQ_PRODUCT_ID\"")
     @Column(name = "ID", unique = true, nullable = false)
     private Long id;
 

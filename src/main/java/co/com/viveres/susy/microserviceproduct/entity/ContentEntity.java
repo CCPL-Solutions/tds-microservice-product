@@ -22,19 +22,19 @@ import javax.persistence.Table;
 @Getter
 @NoArgsConstructor
 @Setter
-@Table(name = "CONTENT")
-public class ContentEntity{
+@Table(name = "\"CONTENTS\"")
+public class ContentEntity {
 
-	@Id
-	@SequenceGenerator(name = "SEQ_CONTENT_ID", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_CONTENT_ID")
+    @Id
+    @SequenceGenerator(name = "\"SEQ_CONTENT_ID\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "\"SEQ_CONTENT_ID\"")
     @Column(name = "ID", unique = true, nullable = false)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "ID_MEASURE_TYPE_FK", unique = false, nullable = false)
     private MeasureTypeEntity measureType;
-    
+
     @Column(name = "VALUE", unique = false, nullable = false)
     private Double value;
 

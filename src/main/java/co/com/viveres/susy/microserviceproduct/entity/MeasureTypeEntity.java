@@ -21,16 +21,16 @@ import javax.persistence.Table;
 @Getter
 @NoArgsConstructor
 @Setter
-@Table(name = "MEASURE_TYPE")
-public class MeasureTypeEntity{
+@Table(name = "\"MEASURES_TYPES\"")
+public class MeasureTypeEntity {
 
-	@Id
-	@SequenceGenerator(name = "SEQ_MEASURE_TYPE_ID", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_MEASURE_TYPE_ID")
+    @Id
+    @SequenceGenerator(name = "\"SEQ_MEASURE_TYPE_ID\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "\"SEQ_MEASURE_TYPE_ID\"")
     @Column(name = "ID", unique = true, nullable = false)
     private Long id;
-	
+
     @Column(name = "NAME", unique = true, nullable = false)
     private String name;
-    
+
 }

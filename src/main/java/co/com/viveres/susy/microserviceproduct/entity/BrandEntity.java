@@ -20,15 +20,15 @@ import javax.persistence.Table;
 @Getter
 @NoArgsConstructor
 @Setter
-@Table(name = "BRAND")
+@Table(name = "\"BRANDS\"")
 public class BrandEntity {
 
-	@Id
-	@SequenceGenerator(name = "SEQ_BRAND_ID", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_BRAND_ID")
+    @Id
+    @SequenceGenerator(name = "\"SEQ_BRAND_ID\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "\"SEQ_BRAND_ID\"")
     @Column(name = "ID", unique = true, nullable = false)
-	private Long id;
+    private Long id;
 
-	@Column(name = "NAME", unique = true, nullable = false)
-	private String name;
+    @Column(name = "NAME", unique = true, nullable = false)
+    private String name;
 }
