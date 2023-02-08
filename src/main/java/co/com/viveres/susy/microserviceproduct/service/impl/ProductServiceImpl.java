@@ -69,12 +69,12 @@ public class ProductServiceImpl implements IProductService {
 		Page<ProductEntity> productEntityPage = null;
 		
 		if (productName != null) {
-			productEntityPage = this.productRepository.findByNameContaining(productName, pageable);
+			productEntityPage = this.productRepository.findByNameContainingAndIsActive(productName, pageable, Boolean.TRUE);
 		}else if(productBran != null) {
-			productEntityPage = this.productRepository.findByBrandNameContaining(productBran, pageable);
+			productEntityPage = this.productRepository.findByBrandNameContainingAndIsActive(productBran, pageable, Boolean.TRUE);
 		}
 		else {
-			productEntityPage = this.productRepository.findAll(pageable);
+			productEntityPage = this.productRepository.findAllByIsActive(pageable, Boolean.TRUE);
 		}
 				
 		return this.mapOutListProductEntityToDto(productEntityPage);
@@ -120,6 +120,13 @@ public class ProductServiceImpl implements IProductService {
 
 		this.persist(productEntity);
 
+	}
+
+	@Override
+	public void delete(Long id) {
+		ProductEntity productEntity = this.findProductById(id);
+		productEntity.setIsActive(Boolean.FALSE);
+		this.persist(productEntity);
 	}
 
 }

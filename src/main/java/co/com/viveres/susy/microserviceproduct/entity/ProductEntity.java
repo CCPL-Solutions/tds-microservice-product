@@ -54,4 +54,7 @@ public class ProductEntity {
     @Column(name = "DESCRIPTION", nullable = true)
     private String description;
 
+    @Column(name = "IS_ACTIVE", nullable = false)
+    private Boolean isActive;
+
 }

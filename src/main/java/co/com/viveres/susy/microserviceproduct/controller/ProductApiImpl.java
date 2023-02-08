@@ -23,7 +23,7 @@ public class ProductApiImpl implements IProductApi {
     @Override
     public ResponseEntity<ProductDto> create(ProductDto request) {
         ProductDto response = service.create(request);
-        return this.buildCreatResponse(response);
+        return this.buildCreateResponse(response);
     }
     
 	@Override
@@ -45,8 +45,9 @@ public class ProductApiImpl implements IProductApi {
     }
 
     @Override
-    public ResponseEntity<Void> delete(Long id) {
-        return null;
+    public ResponseEntity<Void> delete(Long productId) {
+        this.service.delete(productId);
+        return ResponseEntity.ok().build();
     }
 
 	@Override
@@ -54,8 +55,8 @@ public class ProductApiImpl implements IProductApi {
 		this.service.stockManagementByProduct(id, movement);
 		return ResponseEntity.ok().build();
 	}
-	
-	private ResponseEntity<ProductDto> buildCreatResponse(
+
+    private ResponseEntity<ProductDto> buildCreateResponse(
 			ProductDto response) {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{product-id}")

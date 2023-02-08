@@ -34,6 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
@@ -109,10 +110,10 @@ class ProductServiceImplTest {
         String productBran = null;
         Page<ProductEntity> productEntityPage = getProductEntityPage();
         // When
-        when(this.productRepository.findByNameContaining(anyString(), any(Pageable.class))).thenReturn(productEntityPage);
+        when(this.productRepository.findByNameContainingAndIsActive(anyString(), any(Pageable.class), anyBoolean())).thenReturn(productEntityPage);
         Page<ProductDto> productDtoPage = this.service.findAll(page, size, sort, productName, productBran);
         // Then
-        verify(this.productRepository).findByNameContaining(anyString(), any(Pageable.class));
+        verify(this.productRepository).findByNameContainingAndIsActive(anyString(), any(Pageable.class), anyBoolean());
         assertNotNull(productDtoPage);
         assertEquals(3, productDtoPage.getTotalElements());
     }
@@ -127,10 +128,10 @@ class ProductServiceImplTest {
         String productBran = "Diana";
         Page<ProductEntity> productEntityPage = getProductEntityPage();
         // When
-        when(this.productRepository.findByBrandNameContaining(anyString(), any(Pageable.class))).thenReturn(productEntityPage);
+        when(this.productRepository.findByBrandNameContainingAndIsActive(anyString(), any(Pageable.class), anyBoolean())).thenReturn(productEntityPage);
         Page<ProductDto> productDtoPage = this.service.findAll(page, size, sort, productName, productBran);
         // Then
-        verify(this.productRepository).findByBrandNameContaining(anyString(), any(Pageable.class));
+        verify(this.productRepository).findByBrandNameContainingAndIsActive(anyString(), any(Pageable.class), anyBoolean());
         assertNotNull(productDtoPage);
         assertEquals(3, productDtoPage.getTotalElements());
     }

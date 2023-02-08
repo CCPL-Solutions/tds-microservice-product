@@ -17,4 +17,6 @@ public interface IProductService {
 
 	void stockManagementByProduct(Long productId, StockDto movement);
 
+	void delete(Long id);
+
 }

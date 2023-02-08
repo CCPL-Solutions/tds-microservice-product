@@ -43,7 +43,7 @@ public interface IProductApi {
         path = "", 
         consumes = MediaType.APPLICATION_JSON_VALUE, 
         produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ProductDto> create(
+    ResponseEntity<ProductDto> create(
         @Valid @RequestBody ProductDto request);
 
 	@ApiOperation(
@@ -61,7 +61,7 @@ public interface IProductApi {
     @GetMapping(
         path = "", 
         produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Page<ProductDto>> findAll(
+    ResponseEntity<Page<ProductDto>> findAll(
     		@RequestParam(value = "page", defaultValue = "0") int page, 
     		@RequestParam(value = "size", defaultValue = "10") int size,
 			@RequestParam(value = "sort", defaultValue = "name") String sort,
@@ -83,7 +83,7 @@ public interface IProductApi {
     @GetMapping(
         path = "/{product-id}", 
         produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ProductDto> findById(
+    ResponseEntity<ProductDto> findById(
     		@PathVariable("product-id") Long id);
 
 	@ApiOperation(
@@ -100,7 +100,7 @@ public interface IProductApi {
     @PutMapping(
         path = "/{product-id}", 
         consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> update(
+    ResponseEntity<Void> update(
     		@PathVariable("product-id") Long id, 
     		@RequestBody ProductDto request);
 
@@ -116,7 +116,7 @@ public interface IProductApi {
 		@ApiResponse(code = 500, message = "Internal server error")
 	})		
     @DeleteMapping(path = "/{product-id}")
-    public ResponseEntity<Void> delete(
+    ResponseEntity<Void> delete(
     		@PathVariable("product-id") Long id);
     
 	@ApiOperation(
@@ -133,7 +133,7 @@ public interface IProductApi {
     @PutMapping(
     	path = "/{product-id}/stock", 
     	consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> stockManagementByProduct(
+    ResponseEntity<Void> stockManagementByProduct(
     		@PathVariable("product-id") Long id, 
     		@RequestBody StockDto movement);
 

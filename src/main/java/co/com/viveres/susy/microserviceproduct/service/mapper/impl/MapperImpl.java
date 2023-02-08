@@ -78,6 +78,7 @@ public class MapperImpl implements IMapper {
         productEntity.setCurrentNumItems(productDto.getCurrentNumItems());
         productEntity.setMinimunStock(productDto.getMinimunStock());
         productEntity.setDescription(productDto.getDescription());
+        productEntity.setIsActive(Boolean.TRUE);
         return productEntity;
     }
 

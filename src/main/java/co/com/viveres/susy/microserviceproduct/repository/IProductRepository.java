@@ -18,11 +18,11 @@ public interface IProductRepository extends JpaRepository<ProductEntity, Long> {
 	Optional<ProductEntity> findByNameAndBrandAndContent(String name, 
 			BrandEntity brand, ContentEntity content);
 	
-	Page<ProductEntity> findAll(Pageable pageable);
+	Page<ProductEntity> findAllByIsActive(Pageable pageable, Boolean isActive);
 	
-	Page<ProductEntity> findByNameContaining(String name, Pageable pageable);
+	Page<ProductEntity> findByNameContainingAndIsActive(String name, Pageable pageable, Boolean isActive);
 	
 	@Query(value = "select * from product p inner join brand b on p.id_brand_fk = b.id where b.name = ?1", nativeQuery = true)
-	Page<ProductEntity> findByBrandNameContaining(String brand, Pageable pageable);
+	Page<ProductEntity> findByBrandNameContainingAndIsActive(String brand, Pageable pageable, Boolean isActive);
 
 }
