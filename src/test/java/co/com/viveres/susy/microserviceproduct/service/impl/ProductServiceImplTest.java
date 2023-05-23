@@ -227,4 +227,17 @@ class ProductServiceImplTest {
         verify( this.productRepository).findById(anyLong());
         verify(this.productRepository).save(any(ProductEntity.class));
     }
+
+    @Test
+    void delete() {
+        // Given
+        Long productId = 1L;
+        ProductEntity productEntity = productEntityTwo();
+        // When
+        when(this.productRepository.findById(anyLong())).thenReturn(Optional.of(productEntity));
+        this.service.delete(productId);
+        // Then
+        verify( this.productRepository).findById(anyLong());
+        verify(this.productRepository).save(any(ProductEntity.class));
+    }
 }
