@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static co.com.viveres.susy.microserviceproduct.DummyMock.productOutputDto;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -50,7 +51,12 @@ class MeasureTypeApiImplTest {
     }
 
     @Test
-    void findAllTest() {
+    void findAllTest() throws Exception {
+        Mockito.when(service.findAll()).thenReturn(DummyMock.measureDtoListOut());
+        this.mvc.perform(get("/v1/measure-type"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(content().json(asJsonString(DummyMock.measureDtoListOut())));
     }
 
     @Test
