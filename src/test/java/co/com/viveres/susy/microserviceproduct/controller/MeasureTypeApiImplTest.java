@@ -17,8 +17,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static co.com.viveres.susy.microserviceproduct.DummyMock.productInputDtoUpdate;
 import static co.com.viveres.susy.microserviceproduct.DummyMock.productOutputDto;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -60,11 +64,22 @@ class MeasureTypeApiImplTest {
     }
 
     @Test
-    void findByIdTest() {
+    void findByIdTest() throws Exception {
+        when(this.service.findById(anyLong())).thenReturn(DummyMock.measureTypeDtoIn());
+
+        this.mvc.perform(get("/v1/measure-type/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().json(asJsonString(DummyMock.measureTypeDtoIn())));
     }
 
     @Test
-    void updateTest() {
+    void updateTest() throws Exception {
+        this.mvc.perform(put("/v1/measure-type/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(DummyMock.measureTypeDtoIn())))
+                .andExpect(status().isOk());
     }
 
     private String asJsonString(Object object) throws JsonProcessingException {
