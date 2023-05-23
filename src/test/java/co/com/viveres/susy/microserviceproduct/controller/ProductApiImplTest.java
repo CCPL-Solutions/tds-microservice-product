@@ -24,9 +24,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -89,6 +87,14 @@ class ProductApiImplTest {
     @Test
     void updateTest() throws Exception {
         this.mvc.perform(put("/v1/products/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(productInputDtoUpdate())))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void deleteTest() throws Exception {
+        this.mvc.perform(delete("/v1/products/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(productInputDtoUpdate())))
                 .andExpect(status().isOk());

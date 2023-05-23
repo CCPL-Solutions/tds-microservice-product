@@ -146,10 +146,10 @@ class ProductServiceImplTest {
         String productBran = null;
         Page<ProductEntity> productEntityPage = getProductEntityPage();
         // When
-        when(this.productRepository.findAll(any(Pageable.class))).thenReturn(productEntityPage);
+        when(this.productRepository.findAllByIsActive(any(Pageable.class), anyBoolean())).thenReturn(productEntityPage);
         Page<ProductDto> productDtoPage = this.service.findAll(page, size, sort, productName, productBran);
         // Then
-        verify(this.productRepository).findAll(any(Pageable.class));
+        verify(this.productRepository).findAllByIsActive(any(Pageable.class), anyBoolean());
         assertNotNull(productDtoPage);
         assertEquals(3, productDtoPage.getTotalElements());
     }
