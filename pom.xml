@@ -17,6 +17,15 @@
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
+        <!--Start Sonarqube properties-->
+        <sonar.projectKey>${sonarqube.projectKey}</sonar.projectKey>
+        <sonar.exclusions>${sonarqube.exclusions}</sonar.exclusions>
+        <sonar.java.source>${sonarqube.java.source}</sonar.java.source>
+        <sonar.java.sources>${sonarqube.java.sources}</sonar.java.sources>
+        <sonar.java.binaries>${sonarqube.java.binaries}</sonar.java.binaries>
+        <sonar.coverage.exclusions>${sonarqube.coverage.exclusions}</sonar.coverage.exclusions>
+        <sonar.coverage.jacoco.xmlReportPaths>${sonarqube.coverage.jacoco.xmlReportPaths}</sonar.coverage.jacoco.xmlReportPaths>
+        <!--End Sonarqube properties-->
     </properties>
     <dependencies>
         <!--Start spring base dependencies-->
@@ -199,7 +208,7 @@
                         </goals>
                         <configuration>
                             <files>
-                                <file>${project.basedir}/sonar-project.properties</file>
+                                <file>src/main/resources/sonar.properties</file>
                             </files>
                         </configuration>
                     </execution>
