@@ -17,9 +17,14 @@
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
+        <!--Sonarqube properties-->
         <sonar.projectKey>tds-microservice-product</sonar.projectKey>
+        <sonar.java.sources>./src/main/java</sonar.java.sources>
+        <sonar.java.source>11</sonar.java.source>
+        <sonar.java.binaries>target/classes</sonar.java.binaries>
         <sonar.exclusions>**/*Application.*, **/config/*, **/config/**/*</sonar.exclusions>
         <sonar.coverage.exclusions>**/*Application.*, **/config/*, **/config/**/*</sonar.coverage.exclusions>
+        <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
     <dependencies>
         <!--Start spring base dependencies-->
